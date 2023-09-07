@@ -17,11 +17,11 @@ const getTodayDate = (_) => {
   return new Date();
 };
 const getDay = (_) => {
-  return getTodayDate().getDay();
+  return getTodayDate().getUTCDay();
 };
 
 labelDay.textContent = weekDays[getDay()];
 // Show UTC Time in Milliseconds using the setInterval API
 setInterval(() => {
-  labelTime.textContent = Date.now();
+  labelTime.textContent = new Date().getTime();
 }, 1000);
