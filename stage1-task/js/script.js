@@ -13,15 +13,8 @@ const weekDays = [
   "saturday",
 ];
 
-const getTodayDate = (_) => {
-  return new Date();
-};
-const getDay = (_) => {
-  return getTodayDate().getUTCDay();
-};
+labelDay.textContent = weekDays[new Date().getUTCDay()];
 
-labelDay.textContent = weekDays[getDay()];
-// Show UTC Time in Milliseconds using the setInterval API
 setInterval(() => {
-  labelTime.textContent = new Date().getTime();
+  labelTime.textContent = Date.now();
 }, 1000);
