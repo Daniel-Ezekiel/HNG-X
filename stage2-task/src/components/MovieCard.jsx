@@ -5,7 +5,7 @@ import tomato from "../assets/img/tomato.png";
 const MovieCard = ({ id, imgSrc, releaseDate, title }) => {
   return (
     <div
-      className='movieCard max-w-[22rem] m-auto mt-6 grid grid-cols-2 gap-1 text-sm text-gray'
+      className='movieCard  m-auto mt-6 grid grid-cols-2 gap-1 text-sm text-gray'
       data-testid='movie-card'
     >
       <Link to={`/movies/${id}`} className='col-span-full w-full'>

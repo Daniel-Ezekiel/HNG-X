@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { HashLoader } from "react-spinners";
 import MovieCard from "./MovieCard";
+import { ArrowForwardIosRounded } from "@mui/icons-material";
 
 const FeaturedMovies = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,10 +39,13 @@ const FeaturedMovies = () => {
       />
     ));
   return (
-    <main className='mt-6 p-4'>
-      <h2 className='py-2 font-bold text-3xl'>Featured Movies</h2>
+    <main className='mt-6 p-4 grid grid-cols-5 items-center'>
+      <h2 className='col-span-3 py-2 font-bold text-3xl'>Featured Movies</h2>
+      <p className='col-span-2 col-start-4 justify-self-end font-bold text-xl text-rose'>
+        See more <ArrowForwardIosRounded fontSize='medium' />
+      </p>
 
-      <div className='movie-listing'>
+      <div className='movie-listing col-span-full'>
         {isLoading && <HashLoader color='#be123c' className='mx-auto mt-5' />}
         {!isLoading && moviesCards}
       </div>
