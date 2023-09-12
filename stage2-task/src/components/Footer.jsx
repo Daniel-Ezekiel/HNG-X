@@ -25,9 +25,7 @@ const Footer = () => {
       <p className='copyright font-bold text-gray'>
         &copy; MovieBox by Adriana Eka Prayudha
       </p>
-      <p className='copyright font-bold text-gray'>
-        Coded by Daniel B. Ezekiel
-      </p>
+      <p className='copyright font-bold text-gray'>Coded by Daniel Ezekiel</p>
     </footer>
   );
 };
