@@ -2,7 +2,7 @@ import { Facebook, Instagram, Twitter, YouTube } from "@mui/icons-material";
 
 const Footer = () => {
   return (
-    <footer className='p-4 grid gap-2 text-base text-center'>
+    <footer className='p-4 grid gap-2 text-base text-center mt-5'>
       <div className='socials flex gap-3 justify-center'>
         <Facebook fontSize='large' color='#111827' />
         <Instagram fontSize='large' color='#111827' />

@@ -5,7 +5,7 @@ import tomato from "../../assets/img/tomato.png";
 const MovieCard = ({ id, imgSrc, releaseDate, title }) => {
   return (
     <div
-      className='movieCard  m-auto mt-6 grid grid-cols-2 gap-1 text-sm text-gray'
+      className='movieCard  m-auto mt-6 grid grid-cols-2 gap-1 text-sm text-gray hover:scale-105 transition-transform duration-500 ease-in-out'
       data-testid='movie-card'
     >
       <Link to={`/movies/${id}`} className='col-span-full w-full'>
@@ -25,7 +25,7 @@ const MovieCard = ({ id, imgSrc, releaseDate, title }) => {
 
       <Link
         to={`/movies/${id}`}
-        className='col-span-full font-bold text-2xl text-dark-gray'
+        className='col-span-full font-bold text-2xl text-dark-gray hover:underline'
       >
         <h3 data-testid='movie-title'>{title}</h3>
       </Link>

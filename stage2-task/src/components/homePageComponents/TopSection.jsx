@@ -4,7 +4,7 @@ import logo from "../../assets/img/logo.png";
 import menu from "../../assets/img/menu.png";
 import imdb from "../../assets/img/imdb.png";
 import tomato from "../../assets/img/tomato.png";
-import { PlayCircle } from "@mui/icons-material";
+import { PlayCircle, SearchOutlined } from "@mui/icons-material";
 
 const TopSection = () => {
   return (
@@ -12,19 +12,23 @@ const TopSection = () => {
       style={{ backgroundImage: `url(${poster})` }}
       className=' bg-center bg-cover bg-no-repeat text-white'
     >
-      <header className='py-5 px-3'>
-        <nav className='grid grid-cols-2 justify-between items-center gap-2 text-xl'>
+      <header className='py-5 px-3 xl:w-[120rem] xl:mx-auto'>
+        <nav className='grid grid-cols-2 justify-between items-center gap-2 text-xl sm:flex'>
           <Link to='/' className='col-span-1 flex items-center gap-2'>
             <img src={logo} alt='MovieBox logo' />
             MovieBox
           </Link>
 
-          <div className='form-control col-span-full'>
+          <div className='form-control col-span-full relative md:min-w-[40rem] lg:min-w-[52.5rem]'>
             <input
-              className='w-full p-2 bg-[transparent] border border-white rounded-xl text-white placeholder:text-white'
+              className='w-full p-2 pr-7 bg-[transparent] border border-white rounded-xl text-white placeholder:text-white'
               type='text'
-              placeholder='Search for your movie of choice'
+              placeholder='Search for your movie'
             />
+
+            <button type='button' className='absolute right-1 top-1/4'>
+              <SearchOutlined fontSize='large' />
+            </button>
           </div>
 
           <div className='login col-start-2 row-start-1 justify-self-end flex items-center gap-1'>
@@ -36,8 +40,8 @@ const TopSection = () => {
           </div>
         </nav>
 
-        <section className='hero grid grid-cols-4 gap-3 mt-5 pt-[7rem] pb-5 text-xl'>
-          <h1 className='col-span-full font-bold text-4xl'>
+        <section className='hero grid grid-cols-4 gap-3 mt-5 pt-[7rem] pb-5 text-xl sm:max-w-[40rem] sm:px-4 xl:pt-[12rem] xl:pb-[14rem]'>
+          <h1 className='col-span-full font-bold text-4xl xl:text-5xl'>
             John Wick 3: Parabellum
           </h1>
 
