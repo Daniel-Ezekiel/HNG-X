@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import poster from "../assets/img/poster.png";
-import logo from "../assets/img/logo.png";
-import menu from "../assets/img/menu.png";
-import imdb from "../assets/img/imdb.png";
-import tomato from "../assets/img/tomato.png";
+import poster from "../../assets/img/poster.png";
+import logo from "../../assets/img/logo.png";
+import menu from "../../assets/img/menu.png";
+import imdb from "../../assets/img/imdb.png";
+import tomato from "../../assets/img/tomato.png";
 import { PlayCircle } from "@mui/icons-material";
 
 const TopSection = () => {

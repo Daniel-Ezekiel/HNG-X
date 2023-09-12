@@ -1,6 +1,6 @@
-import TopSection from "../components/TopSection";
-import FeaturedMovies from "../components/FeaturedMovies";
-import Footer from "../components/Footer";
+import TopSection from "../components/homePageComponents/TopSection";
+import FeaturedMovies from "../components/homePageComponents/FeaturedMovies";
+import Footer from "../components/homePageComponents/Footer";
 
 const Homepage = () => {
   return (

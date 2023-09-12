@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import imdb from "../assets/img/imdb.png";
-import tomato from "../assets/img/tomato.png";
+import imdb from "../../assets/img/imdb.png";
+import tomato from "../../assets/img/tomato.png";
 
 const MovieCard = ({ id, imgSrc, releaseDate, title }) => {
   return (
