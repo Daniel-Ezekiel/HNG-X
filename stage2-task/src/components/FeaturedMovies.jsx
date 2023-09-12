@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { HashLoader } from "react-spinners";
-import featuredPoster from "../assets/img/featured-poster.png";
 import MovieCard from "./MovieCard";
 
 const FeaturedMovies = () => {
@@ -33,7 +32,7 @@ const FeaturedMovies = () => {
       <MovieCard
         key={movie.id}
         id={movie.id}
-        imgSrc={featuredPoster}
+        imgSrc={movie.poster_path}
         releaseDate={movie.release_date}
         title={movie.title}
       />
