@@ -7,16 +7,16 @@ import calendarImg from "../../assets/img/calendar.png";
 import { ExitToApp } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ id }) => {
   return (
-    <header className='2xl:col-span-2  2xl:border-r-2 2xl:border-gray 2xl:rounded-[5rem]'>
-      <nav className='flex justify-between items-center gap-3 p-3 text-[1.8rem] 2xl:py-10 2xl:p-[0] 2xl:flex 2xl:flex-col 2xl:justify-start 2xl:items-center 2xl:gap-5 2xl:h-full'>
+    <header className='xl:col-span-2  xl:border-r-2 xl:border-gray xl:rounded-[5rem]'>
+      <nav className='flex justify-between items-center gap-3 p-3 text-[1.8rem] xl:py-10 xl:p-[0] xl:flex xl:flex-col xl:justify-start xl:items-center xl:gap-5 xl:h-full'>
         <Link to='/' className='flex items-center gap-2 font-bold'>
           <img src={logo} alt='MovieBox logo' />
           MovieBox
         </Link>
 
-        <div className='hidden 2xl:grid 2xl:h-full place-items-center'>
+        <div className='hidden xl:grid xl:h-full place-items-center'>
           <ul className='w-full'>
             <li className='p-6 font-bold text-[2.3rem]'>
               <Link to='/' className='flex gap-2 items-center'>
@@ -28,7 +28,10 @@ const Header = () => {
               style={{ backgroundColor: "rgba(190,18,60,0.1)" }}
               className='p-6 font-bold text-[2.3rem] border-r-4 border-rose'
             >
-              <Link className='flex gap-2 items-center text-rose'>
+              <Link
+                to={`/movies/${id}`}
+                className='flex gap-2 items-center text-rose'
+              >
                 <img src={movieImg} alt='' />
                 Movies
               </Link>
@@ -68,7 +71,7 @@ const Header = () => {
           </button>
         </div>
 
-        <button className='bg-rose p-1 rounded-full 2xl:hidden'>
+        <button className='bg-rose p-1 rounded-full xl:hidden'>
           <img src={menu} alt='menu button' />
         </button>
       </nav>

@@ -7,22 +7,28 @@ import {
   Star,
 } from "@mui/icons-material";
 
-const MainContent = () => {
+const MainContent = ({ title, details, imgSrc, year, length, rating }) => {
   return (
-    <main className='p-4 grid gap-3 lg:grid-cols-12 2xl:col-span-10'>
-      <div className='movie-trailer h-[20rem] rounded-2xl overflow-hidden sm:h-[30rem] lg:col-span-full lg:h-[45rem] 2xl:h-[58rem]'>
+    <main className='p-4 grid gap-3 lg:grid-cols-12 xl:col-span-10'>
+      <div className='movie-trailer h-[20rem] rounded-2xl overflow-hidden sm:h-[30rem] lg:col-span-full lg:h-[45rem] xl:h-[58rem]'>
         <img
-          src={moviePoster}
+          src={`https://image.tmdb.org/t/p/original/${imgSrc}`}
           alt='movie poster'
           className='w-full h-full object-cover'
         />
       </div>
 
       <div className='movieDetails grid grid-cols-4 items-center gap-3 font-medium text-xl md:grid-cols-10 lg:grid-cols-8 lg:col-span-7'>
-        <h1 className='col-span-full text-[2.3rem]'>Top Gun Maverick</h1>
-        <span className='col-span-1'>2022</span>
+        <h1 className='col-span-full text-[2.3rem]' data-testid='movie-title'>
+          {title}
+        </h1>
+        <span className='col-span-1' data-testid='movie-release-date'>
+          {year}
+        </span>
         <span className='col-span-1'>PG-13</span>
-        <span className='col-span-1'>2h 10m</span>
+        <span className='col-span-1' data-testid='movie-runtime'>
+          {length} mins
+        </span>
         <div className='col-span-full flex gap-2 md:col-span-3'>
           <span className='py-1 px-3 border border-gray rounded-full text-rose'>
             Action
@@ -35,16 +41,13 @@ const MainContent = () => {
         <div className='col-span-full flex items-center text-xl gap-2 xl:col-span-2'>
           <span>
             <Star fontSize='large' className='mr-1' />
-            8.5
+            {rating.toFixed(1)}
           </span>{" "}
           |<span>350k</span>
         </div>
 
-        <p className='col-span-full'>
-          After thirty years, Maverick is still pushing the envelope as a top
-          naval aviator, but must confront ghosts of his past when he leads TOP
-          GUN&apos;s elite graduates on a mission that demands the ultimate
-          sacrifice from those chosen to fly it.
+        <p className='col-span-full' data-testid='movie-overview'>
+          {details}
         </p>
 
         <p className='col-span-full text-rose'>

@@ -1,4 +1,6 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import poster from "../../assets/img/poster.png";
 import logo from "../../assets/img/logo.png";
 import menu from "../../assets/img/menu.png";
@@ -7,9 +9,42 @@ import tomato from "../../assets/img/tomato.png";
 import { PlayCircle, SearchOutlined } from "@mui/icons-material";
 
 const TopSection = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [movies, setMovies] = useState(null);
+  const [position, setPosition] = useState(0);
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const res = await axios.get(
+          `https://api.themoviedb.org/3/trending/movie/day?api_key=6f687067231f0a6ceb9c0cae600a334c`
+        );
+
+        setMovies(res.data.results.slice(0, 5));
+        console.log(movies[0]);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchMovies();
+  }, []);
+
+  const movie = !isLoading && movies[position];
+
+  function changeMovie() {
+    position > 4
+      ? setPosition((prevPos) => 0)
+      : setPosition((prevPos) => prevPos + 1);
+  }
+
   return (
     <section
-      style={{ backgroundImage: `url(${poster})` }}
+      style={{
+        backgroundImage: `url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')`,
+      }}
       className=' bg-center bg-cover bg-no-repeat text-white'
     >
       <header className='py-5 px-3 xl:w-[120rem] xl:mx-auto'>
@@ -42,7 +77,7 @@ const TopSection = () => {
 
         <section className='hero grid grid-cols-4 gap-3 mt-5 pt-[7rem] pb-5 text-xl sm:max-w-[40rem] sm:px-4 xl:pt-[12rem] xl:pb-[14rem]'>
           <h1 className='col-span-full font-bold text-4xl xl:text-5xl'>
-            John Wick 3: Parabellum
+            {movie.title}
           </h1>
 
           <span className='col-span-2 w-[fit-content] flex items-center gap-1'>
@@ -54,18 +89,23 @@ const TopSection = () => {
             97%
           </span>
 
-          <p className='col-span-full'>
-            John Wick is on the run after killing a member of the international
-            assassins&apos; guild, and with a $14 million price tag on his head,
-            he is the target of hit men and women everywhere.
-          </p>
+          <p className='col-span-full'>{movie.overview}</p>
+
+          <Link
+            to={`/movies/${movie.id}`}
+            className='flex gap-1 justify-center items-center col-span-2 p-2 bg-rose rounded-xl'
+          >
+            <PlayCircle fontSize='large' />
+            Watch Trailer
+          </Link>
 
           <button
             className='flex gap-1 justify-center items-center col-span-2 p-2 bg-rose rounded-xl'
             type='button'
+            onClick={changeMovie}
           >
             <PlayCircle fontSize='large' />
-            Watch Trailer
+            Next Movie
           </button>
         </section>
       </header>
