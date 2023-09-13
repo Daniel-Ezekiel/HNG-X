@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import poster from "../../assets/img/poster.png";
+import { HashLoader } from "react-spinners";
 import logo from "../../assets/img/logo.png";
 import menu from "../../assets/img/menu.png";
 import imdb from "../../assets/img/imdb.png";
@@ -12,6 +12,8 @@ const TopSection = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [movies, setMovies] = useState(null);
   const [position, setPosition] = useState(0);
+  const [searchValue, setSearchValue] = useState("");
+  const searchInputRef = useRef(null);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -21,7 +23,6 @@ const TopSection = () => {
         );
 
         setMovies(res.data.results.slice(0, 5));
-        console.log(movies[0]);
       } catch (err) {
         console.log(err);
       } finally {
@@ -41,75 +42,94 @@ const TopSection = () => {
   }
 
   return (
-    <section
-      style={{
-        backgroundImage: `url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')`,
-      }}
-      className=' bg-center bg-cover bg-no-repeat text-white'
-    >
-      <header className='py-5 px-3 xl:w-[120rem] xl:mx-auto'>
-        <nav className='grid grid-cols-2 justify-between items-center gap-2 text-xl sm:flex'>
-          <Link to='/' className='col-span-1 flex items-center gap-2'>
-            <img src={logo} alt='MovieBox logo' />
-            MovieBox
-          </Link>
+    <>
+      {isLoading && <HashLoader />}
+      {!isLoading && (
+        <section
+          style={{
+            backgroundImage: `url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')`,
+          }}
+          className=' bg-center bg-cover bg-no-repeat text-white'
+        >
+          <header className='py-5 px-3 xl:w-[120rem] xl:mx-auto'>
+            <nav className='grid grid-cols-2 justify-between items-center gap-2 text-xl sm:flex'>
+              <Link to='/' className='col-span-1 flex items-center gap-2'>
+                <img src={logo} alt='MovieBox logo' />
+                MovieBox
+              </Link>
 
-          <div className='form-control col-span-full relative md:min-w-[40rem] lg:min-w-[52.5rem]'>
-            <input
-              className='w-full p-2 pr-7 bg-[transparent] border border-white rounded-xl text-white placeholder:text-white'
-              type='text'
-              placeholder='Search for your movie'
-            />
+              <div className='form-control col-span-full relative md:min-w-[40rem] lg:min-w-[52.5rem]'>
+                <form
+                  action={`/movies/${searchValue
+                    .toLowerCase()
+                    .split(" ")
+                    .join("+")}`}
+                  method='GET'
+                >
+                  <input
+                    className='w-full p-2 pr-7 bg-[transparent] border border-white rounded-xl text-white placeholder:text-white'
+                    type='text'
+                    value={searchValue}
+                    onChange={(e) => setSearchValue(e.target.value)}
+                    ref={searchInputRef}
+                    placeholder='Search for your movie'
+                    required
+                  />
 
-            <button type='button' className='absolute right-1 top-1/4'>
-              <SearchOutlined fontSize='large' />
-            </button>
-          </div>
+                  <button className='absolute right-1 top-1/4'>
+                    <SearchOutlined fontSize='large' />
+                  </button>
+                </form>
+              </div>
 
-          <div className='login col-start-2 row-start-1 justify-self-end flex items-center gap-1'>
-            <span>Sign in</span>
+              <div className='login col-start-2 row-start-1 justify-self-end flex items-center gap-1'>
+                <span>Sign in</span>
 
-            <button className='bg-rose p-1 rounded-full'>
-              <img src={menu} alt='menu button' />
-            </button>
-          </div>
-        </nav>
+                <button className='bg-rose p-1 rounded-full'>
+                  <img src={menu} alt='menu button' />
+                </button>
+              </div>
+            </nav>
+          </header>
 
-        <section className='hero grid grid-cols-4 gap-3 mt-5 pt-[7rem] pb-5 text-xl sm:max-w-[40rem] sm:px-4 xl:pt-[12rem] xl:pb-[14rem]'>
-          <h1 className='col-span-full font-bold text-4xl xl:text-5xl'>
-            {movie.title}
-          </h1>
+          <section className='hero px-3 mt-5 pt-[7rem] pb-5 text-xl xl:w-[120rem] xl:mx-auto xl:pt-[12rem] xl:pb-[14rem]'>
+            <div className='grid grid-cols-4 gap-3 sm:max-w-[40rem] sm:px-4'>
+              <h1 className='col-span-full font-bold text-4xl xl:text-5xl'>
+                {movie.title}
+              </h1>
 
-          <span className='col-span-2 w-[fit-content] flex items-center gap-1'>
-            <img src={imdb} alt='imdb icon' />
-            8.60/10.0
-          </span>
-          <span className='col-span-2 flex items-center gap-1'>
-            <img src={tomato} alt='imdb icon' />
-            97%
-          </span>
+              <span className='col-span-2 w-[fit-content] flex items-center gap-1'>
+                <img src={imdb} alt='imdb icon' />
+                8.60/10.0
+              </span>
+              <span className='col-span-2 flex items-center gap-1'>
+                <img src={tomato} alt='imdb icon' />
+                97%
+              </span>
 
-          <p className='col-span-full'>{movie.overview}</p>
+              <p className='col-span-full'>{movie.overview}</p>
 
-          <Link
-            to={`/movies/${movie.id}`}
-            className='flex gap-1 justify-center items-center col-span-2 p-2 bg-rose rounded-xl'
-          >
-            <PlayCircle fontSize='large' />
-            Watch Trailer
-          </Link>
+              <Link
+                to={`/movies/${movie.id}`}
+                className='flex gap-1 justify-center items-center col-span-2 p-2 bg-rose rounded-xl'
+              >
+                <PlayCircle fontSize='large' />
+                Watch Trailer
+              </Link>
 
-          <button
-            className='flex gap-1 justify-center items-center col-span-2 p-2 bg-rose rounded-xl'
-            type='button'
-            onClick={changeMovie}
-          >
-            <PlayCircle fontSize='large' />
-            Next Movie
-          </button>
+              <button
+                className='flex gap-1 justify-center items-center col-span-2 p-2 bg-rose rounded-xl'
+                type='button'
+                onClick={changeMovie}
+              >
+                <PlayCircle fontSize='large' />
+                Next Movie
+              </button>
+            </div>
+          </section>
         </section>
-      </header>
-    </section>
+      )}
+    </>
   );
 };
 

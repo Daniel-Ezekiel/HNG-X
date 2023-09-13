@@ -11,7 +11,7 @@ const Movie = () => {
   const [movieInfo, setMovieInfo] = useState(null);
 
   useEffect(() => {
-    const fetchMovieInfo = async () => {
+    const fetchMovieInfoByID = async () => {
       try {
         const res = await axios.get(
           `https://api.themoviedb.org/3/movie/${id}?api_key=6f687067231f0a6ceb9c0cae600a334c`
@@ -25,13 +25,29 @@ const Movie = () => {
       }
     };
 
-    fetchMovieInfo();
+    const fetchMovieInfoByQuery = async () => {
+      try {
+        const res = await axios.get(
+          `https://api.themoviedb.org/3/search/movie?query=${id}&api_key=6f687067231f0a6ceb9c0cae600a334c`
+        );
+
+        setMovieInfo(res.data.results[0]);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    Number.isFinite(Number(id))
+      ? fetchMovieInfoByID()
+      : fetchMovieInfoByQuery();
   }, []);
 
   const {
     title,
     overview,
-    poster_path,
+    backdrop_path,
     genres,
     release_date,
     runtime,
@@ -60,10 +76,11 @@ const Movie = () => {
             id={id}
             title={title}
             details={overview}
-            imgSrc={poster_path}
+            imgSrc={backdrop_path}
             year={release_date.slice(0, 4)}
             length={runtime}
             rating={vote_average}
+            genres={genres}
           />
         )}
       </div>
