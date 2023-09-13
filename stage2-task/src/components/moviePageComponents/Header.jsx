@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import logo from "../../assets/img/logo.png";
 import menu from "../../assets/img/menu.png";
 import homeImg from "../../assets/img/home.png";
@@ -8,6 +9,10 @@ import { ExitToApp } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 const Header = ({ id }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const mobileNavRef = useRef(null);
+  const menuRef = useRef(null);
+
   return (
     <header className='xl:col-span-2  xl:border-r-2 xl:border-gray xl:rounded-[5rem]'>
       <nav className='flex justify-between items-center gap-3 p-3 text-[1.8rem] xl:py-10 xl:p-[0] xl:flex xl:flex-col xl:justify-start xl:items-center xl:gap-5 xl:h-full'>
@@ -16,7 +21,10 @@ const Header = ({ id }) => {
           MovieBox
         </Link>
 
-        <div className='hidden xl:grid xl:h-full place-items-center'>
+        <div
+          className='hidden xl:grid xl:h-full place-items-center'
+          ref={mobileNavRef}
+        >
           <ul className='w-full'>
             <li className='p-6 font-bold text-[2.3rem]'>
               <Link to='/' className='flex gap-2 items-center'>
@@ -71,7 +79,7 @@ const Header = ({ id }) => {
           </button>
         </div>
 
-        <button className='bg-rose p-1 rounded-full xl:hidden'>
+        <button className='bg-rose p-1 rounded-full xl:hidden' ref={menuRef}>
           <img src={menu} alt='menu button' />
         </button>
       </nav>
