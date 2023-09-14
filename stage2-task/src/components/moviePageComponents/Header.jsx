@@ -13,6 +13,29 @@ const Header = ({ id }) => {
   const mobileNavRef = useRef(null);
   const menuRef = useRef(null);
 
+  function toggleNav() {
+    setIsOpen((prevIsOpen) => !prevIsOpen);
+
+    const classNamesToToggle = [
+      "fixed",
+      "bg-white",
+      "top-[0]",
+      "right-[0]",
+      "w-2/3",
+      "h-full",
+      "flex",
+      "flex-col",
+      "pt-7",
+      "justify-center",
+      "items-center",
+      "gap-5",
+      "z-10",
+    ];
+    mobileNavRef.current.classList.toggle("hidden");
+    mobileNavRef.current.classList.add(...classNamesToToggle);
+    console.log(isOpen);
+  }
+
   return (
     <header className='xl:fixed xl:h-full xl:w-[18%] xl:border-r-2 xl:border-gray xl:rounded-[5rem]'>
       <nav className='flex justify-between items-center gap-3 p-3 text-[1.8rem] xl:py-10 xl:p-[0] xl:flex xl:flex-col xl:justify-start xl:items-center xl:gap-5 xl:h-full'>
@@ -79,7 +102,11 @@ const Header = ({ id }) => {
           </button>
         </div>
 
-        <button className='bg-rose p-1 rounded-full xl:hidden' ref={menuRef}>
+        <button
+          className='bg-rose p-1 rounded-full z-10 xl:hidden'
+          ref={menuRef}
+          onClick={toggleNav}
+        >
           <img src={menu} alt='menu button' />
         </button>
       </nav>
