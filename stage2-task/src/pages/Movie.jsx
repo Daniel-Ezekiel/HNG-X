@@ -61,7 +61,7 @@ const Movie = () => {
 
   return (
     <>
-      <div className='moviePage relative xl:grid xl:grid-cols-12 gap-5'>
+      <div className='moviePage relative xl:grid xl:grid-cols-12'>
         <Header />
         {isLoading && (
           <HashLoader

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import imdb from "../../assets/img/imdb.png";
 import tomato from "../../assets/img/tomato.png";
 
-const MovieCard = ({ id, imgSrc, releaseDate, title }) => {
+const MovieCard = ({ id, imgSrc, releaseDate, title, rating }) => {
   return (
     <div
       className='movieCard  m-auto mt-6 grid grid-cols-2 gap-1 text-sm text-gray hover:scale-105 transition-transform duration-500 ease-in-out'
@@ -32,11 +32,11 @@ const MovieCard = ({ id, imgSrc, releaseDate, title }) => {
 
       <span className='col-span-1 w-[fit-content] flex items-center gap-1 text-dark-gray'>
         <img src={imdb} alt='imdb icon' />
-        8.60/10.0
+        {rating.toPrecision(2)}/10
       </span>
       <span className='col-span-1 flex justify-end items-center gap-1 text-dark-gray'>
         <img src={tomato} alt='imdb icon' />
-        97%
+        {(rating * 10).toPrecision(2)}%
       </span>
 
       <span className='w-full col-span-full font-bold'>

@@ -31,6 +31,7 @@ const TopSection = () => {
     };
 
     fetchMovies();
+    console.log(movies);
   }, []);
 
   const movie = !isLoading && movies[position];
@@ -43,7 +44,7 @@ const TopSection = () => {
 
   return (
     <>
-      {isLoading && <HashLoader />}
+      {isLoading && <HashLoader className='mx-auto mt-10' />}
       {!isLoading && (
         <section
           style={{
@@ -100,11 +101,11 @@ const TopSection = () => {
 
               <span className='col-span-2 w-[fit-content] flex items-center gap-1'>
                 <img src={imdb} alt='imdb icon' />
-                8.60/10.0
+                {movie.vote_average.toPrecision(2)}/10
               </span>
               <span className='col-span-2 flex items-center gap-1'>
                 <img src={tomato} alt='imdb icon' />
-                97%
+                {(movie.vote_average * 10).toPrecision(3)}%
               </span>
 
               <p className='col-span-full'>{movie.overview}</p>

@@ -4,6 +4,8 @@ import {
   FormatListBulletedRounded,
   KeyboardArrowDownRounded,
   Star,
+  StarOutlineRounded,
+  StarRounded,
 } from "@mui/icons-material";
 import Genre from "./Genre";
 
@@ -21,35 +23,39 @@ const MainContent = ({
     <Genre key={genre.id} genreName={genre.name} />
   ));
   return (
-    <main className='p-4 grid gap-3 lg:grid-cols-12 xl:col-span-10'>
-      <div className='movie-trailer h-[20rem] rounded-2xl overflow-hidden sm:h-[30rem] lg:col-span-full lg:h-[45rem] xl:h-[58rem]'>
+    <main className='p-4 grid gap-3 lg:grid-cols-12 xl:col-start-3 xl:col-span-10 xl:pt-[4rem] xl:px-[7rem]'>
+      <div className='movie-trailer h-[20rem] rounded-2xl overflow-hidden sm:h-[30rem] lg:col-span-full lg:h-[45rem] xl:h-[50rem]'>
         <img
           src={`https://image.tmdb.org/t/p/original/${imgSrc}`}
           alt='movie poster'
-          className='w-full h-full object-cover'
+          className='w-full object-cover'
         />
       </div>
 
       <div className='movieDetails grid grid-cols-4 items-center gap-3 font-medium text-xl md:grid-cols-10 lg:grid-cols-8 lg:col-span-7'>
-        <h1 className='col-span-full text-[2.3rem]' data-testid='movie-title'>
-          {title}
-        </h1>
-        <span className='col-span-1' data-testid='movie-release-date'>
-          {year}
-        </span>
-        <span className='col-span-1' data-testid='movie-runtime'>
-          {length} mins
-        </span>
-        <div className='col-span-full flex gap-2 md:col-span-4'>
-          {genreList}
-        </div>
-
-        <div className='col-span-full flex items-center text-xl gap-2 xl:col-span-2'>
-          <span>
-            <Star fontSize='large' className='mr-1' />
-            {rating.toFixed(1)}
-          </span>{" "}
-          |<span>350k</span>
+        <div className='col-span-full flex flex-wrap items-center gap-4'>
+          <h1 className='col-span-full text-[2.3rem]' data-testid='movie-title'>
+            {title}
+          </h1>
+          •
+          <span className='col-span-1' data-testid='movie-release-date'>
+            {year}
+          </span>
+          •
+          <span className='col-span-1' data-testid='movie-runtime'>
+            {length} mins
+          </span>
+          •
+          <div className='col-span-full flex gap-2 md:col-span-4'>
+            {genreList}
+          </div>
+          <div className='col-span-full flex items-center text-xl gap-2 xl:col-span-2'>
+            <span>
+              <StarRounded fontSize='large' className='mr-1 text-rose' />
+              {rating.toPrecision(2)}
+            </span>{" "}
+            |<span>350k</span>
+          </div>
         </div>
 
         <p className='col-span-full' data-testid='movie-overview'>
@@ -80,7 +86,7 @@ const MainContent = ({
         </div>
       </div>
 
-      <aside className='grid gap-3 text-xl lg:col-span-5'>
+      <aside className='grid gap-3 text-xl lg:col-span-5 3xl:p-[2rem]'>
         <button className='p-2  bg-rose rounded-xl text-white hover:scale-105 transition-transform duration-500 ease-in-out'>
           <ConfirmationNumberRounded className='mr-2' fontSize='large' />
           See Showtimes

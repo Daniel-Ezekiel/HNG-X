@@ -14,7 +14,7 @@ const Header = ({ id }) => {
   const menuRef = useRef(null);
 
   return (
-    <header className='xl:col-span-2  xl:border-r-2 xl:border-gray xl:rounded-[5rem]'>
+    <header className='xl:fixed xl:h-full xl:w-[18%] xl:border-r-2 xl:border-gray xl:rounded-[5rem]'>
       <nav className='flex justify-between items-center gap-3 p-3 text-[1.8rem] xl:py-10 xl:p-[0] xl:flex xl:flex-col xl:justify-start xl:items-center xl:gap-5 xl:h-full'>
         <Link to='/' className='flex items-center gap-2 font-bold'>
           <img src={logo} alt='MovieBox logo' />
@@ -26,7 +26,7 @@ const Header = ({ id }) => {
           ref={mobileNavRef}
         >
           <ul className='w-full'>
-            <li className='p-6 font-bold text-[2.3rem]'>
+            <li className='p-6 font-bold '>
               <Link to='/' className='flex gap-2 items-center'>
                 <img src={homeImg} alt='' />
                 Home
@@ -34,7 +34,7 @@ const Header = ({ id }) => {
             </li>
             <li
               style={{ backgroundColor: "rgba(190,18,60,0.1)" }}
-              className='p-6 font-bold text-[2.3rem] border-r-4 border-rose'
+              className='p-6 font-bold  border-r-4 border-rose'
             >
               <Link
                 to={`/movies/${id}`}
@@ -44,12 +44,12 @@ const Header = ({ id }) => {
                 Movies
               </Link>
             </li>
-            <li className='p-6 font-bold text-[2.3rem]'>
+            <li className='p-6 font-bold '>
               <Link className='flex gap-2 items-center'>
                 <img src={tvShowImg} alt='' /> TV Series
               </Link>
             </li>
-            <li className='p-6 font-bold text-[2.3rem]'>
+            <li className='p-6 font-bold '>
               <Link className='flex gap-2 items-center'>
                 <img src={calendarImg} alt='' /> Upcoming
               </Link>
@@ -73,7 +73,7 @@ const Header = ({ id }) => {
             </button>
           </div>
 
-          <button type='button' className='font-bold text-[2.3rem]'>
+          <button type='button' className='font-bold '>
             <ExitToApp className='mr-2' fontSize='large' />
             Log out
           </button>
