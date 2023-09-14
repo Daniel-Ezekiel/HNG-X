@@ -50,11 +50,14 @@ const TopSection = () => {
           style={{
             backgroundImage: `url('https://image.tmdb.org/t/p/original/${movie.backdrop_path}')`,
           }}
-          className=' bg-center bg-cover bg-no-repeat text-white'
+          className='relative bg-center bg-cover bg-no-repeat text-white before:absolute before:h-full before:w-full before:bg-[rgba(17,24,39,0.4)]'
         >
-          <header className='py-5 px-3 xl:w-[120rem] xl:mx-auto'>
+          <header className='py-5 px-3 z-[2] xl:w-[120rem] xl:mx-auto'>
             <nav className='grid grid-cols-2 justify-between items-center gap-2 text-xl sm:flex'>
-              <Link to='/' className='col-span-1 flex items-center gap-2'>
+              <Link
+                to='/'
+                className='col-span-1 flex items-center gap-2  z-[2]'
+              >
                 <img src={logo} alt='MovieBox logo' />
                 MovieBox
               </Link>
@@ -83,7 +86,7 @@ const TopSection = () => {
                 </form>
               </div>
 
-              <div className='login col-start-2 row-start-1 justify-self-end flex items-center gap-1'>
+              <div className='login col-start-2 row-start-1 justify-self-end flex items-center gap-1  z-[2]'>
                 <span>Sign in</span>
 
                 <button className='bg-rose p-1 rounded-full'>
@@ -94,32 +97,32 @@ const TopSection = () => {
           </header>
 
           <section className='hero px-3 mt-5 pt-[7rem] pb-5 text-xl xl:w-[120rem] xl:mx-auto xl:pt-[12rem] xl:pb-[14rem]'>
-            <div className='grid grid-cols-4 gap-3 sm:max-w-[40rem] sm:px-4'>
-              <h1 className='col-span-full font-bold text-4xl xl:text-5xl'>
+            <div className='grid grid-cols-4 gap-3  sm:max-w-[40rem] sm:px-4'>
+              <h1 className='col-span-full font-bold text-4xl z-[2] xl:text-5xl'>
                 {movie.title}
               </h1>
 
-              <span className='col-span-2 w-[fit-content] flex items-center gap-1'>
+              <span className='col-span-2 w-[fit-content] flex items-center gap-1 z-[2]'>
                 <img src={imdb} alt='imdb icon' />
                 {movie.vote_average.toPrecision(2)}/10
               </span>
-              <span className='col-span-2 flex items-center gap-1'>
+              <span className='col-span-2 flex items-center gap-1 z-[2]'>
                 <img src={tomato} alt='imdb icon' />
                 {(movie.vote_average * 10).toPrecision(3)}%
               </span>
 
-              <p className='col-span-full'>{movie.overview}</p>
+              <p className='col-span-full z-[2]'>{movie.overview}</p>
 
               <Link
                 to={`/movies/${movie.id}`}
-                className='flex gap-1 justify-center items-center col-span-2 p-2 bg-rose rounded-xl'
+                className='flex gap-1 justify-center items-center col-span-2 p-2 bg-rose rounded-xl z-[2]'
               >
                 <PlayCircle fontSize='large' />
                 Watch Trailer
               </Link>
 
               <button
-                className='flex gap-1 justify-center items-center col-span-2 p-2 bg-rose rounded-xl'
+                className='flex gap-1 justify-center items-center col-span-2 p-2 bg-rose rounded-xl z-[2]'
                 type='button'
                 onClick={changeMovie}
               >
