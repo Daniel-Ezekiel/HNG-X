@@ -11,7 +11,7 @@ const Movie = () => {
   const [movieInfo, setMovieInfo] = useState(null);
 
   useEffect(() => {
-    const fetchMovieInfoByID = async () => {
+    const fetchMovieInfo = async () => {
       try {
         const res = await axios.get(
           `https://api.themoviedb.org/3/movie/${id}?api_key=6f687067231f0a6ceb9c0cae600a334c`
@@ -25,27 +25,7 @@ const Movie = () => {
       }
     };
 
-    const fetchMovieInfoByQuery = async () => {
-      try {
-        const res = await axios.get(
-          `https://api.themoviedb.org/3/search/movie?query=${id}&api_key=6f687067231f0a6ceb9c0cae600a334c`
-        );
-        const movieID = res.data.results[0].id;
-
-        const newRes = await axios.get(
-          `https://api.themoviedb.org/3/movie/${movieID}?api_key=6f687067231f0a6ceb9c0cae600a334c`
-        );
-        setMovieInfo(newRes.data);
-      } catch (err) {
-        console.log(err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    Number.isFinite(Number(id))
-      ? fetchMovieInfoByID()
-      : fetchMovieInfoByQuery();
+    fetchMovieInfo();
   }, []);
 
   const {

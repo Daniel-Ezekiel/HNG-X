@@ -8,11 +8,10 @@ import imdb from "../../assets/img/imdb.png";
 import tomato from "../../assets/img/tomato.png";
 import { PlayCircle, SearchOutlined } from "@mui/icons-material";
 
-const TopSection = () => {
+const TopSection = ({ query, handleChange, handleSearch }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [movies, setMovies] = useState(null);
   const [position, setPosition] = useState(0);
-  const [searchValue, setSearchValue] = useState("");
   const searchInputRef = useRef(null);
 
   useEffect(() => {
@@ -63,27 +62,22 @@ const TopSection = () => {
               </Link>
 
               <div className='form-control col-span-full relative md:min-w-[40rem] lg:min-w-[52.5rem]'>
-                <form
-                  action={`/movies/${searchValue
-                    .toLowerCase()
-                    .split(" ")
-                    .join("+")}`}
-                  method='GET'
-                >
-                  <input
-                    className='w-full p-2 pr-7 bg-[transparent] border border-white rounded-xl text-white placeholder:text-white'
-                    type='text'
-                    value={searchValue}
-                    onChange={(e) => setSearchValue(e.target.value)}
-                    ref={searchInputRef}
-                    placeholder='Search for your movie'
-                    required
-                  />
+                <input
+                  className='w-full p-2 pr-7 bg-[transparent] border border-white rounded-xl text-white placeholder:text-white'
+                  type='text'
+                  value={query}
+                  onChange={handleChange}
+                  ref={searchInputRef}
+                  placeholder='Search for your movie'
+                  required
+                />
 
-                  <button className='absolute right-1 top-1/4'>
-                    <SearchOutlined fontSize='large' />
-                  </button>
-                </form>
+                <button
+                  className='absolute right-1 top-1/4'
+                  onClick={handleSearch}
+                >
+                  <SearchOutlined fontSize='large' />
+                </button>
               </div>
 
               <div className='login col-start-2 row-start-1 justify-self-end flex items-center gap-1  z-[2]'>
