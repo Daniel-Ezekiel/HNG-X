@@ -27,7 +27,7 @@ const FeaturedMovies = forwardRef(function FeaturedMovies({ movieList }, ref) {
       <h2 className='col-span-3 py-2 font-bold text-3xl'>Featured Movies</h2>
       <Link
         to=''
-        className='col-span-2 col-start-4 justify-self-end font-bold text-xl text-rose'
+        className='col-span-2 col-start-4 justify-self-end font-bold text-base  text-rose sm:text-xl'
       >
         View Favourites <ArrowForwardIosRounded fontSize='medium' />
       </Link>
