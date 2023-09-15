@@ -30,7 +30,6 @@ const TopSection = ({ query, handleChange, handleSearch }) => {
     };
 
     fetchMovies();
-    console.log(movies);
   }, []);
 
   const movie = !isLoading && movies[position];

@@ -1,13 +1,45 @@
 import { Link } from "react-router-dom";
 import imdb from "../../assets/img/imdb.png";
 import tomato from "../../assets/img/tomato.png";
+import { Favorite } from "@mui/icons-material";
+import { useEffect, useState } from "react";
 
-const MovieCard = ({ id, imgSrc, releaseDate, title, rating }) => {
+const MovieCard = ({ id, imgSrc, releaseDate, title, rating, favourited }) => {
+  const [isFavourite, setIsFavourite] = useState(favourited);
+  console.log(isFavourite);
+
+  function toggleFavourite(event) {
+    event.stopPropagation();
+    setIsFavourite((prevIsFavourite) => !prevIsFavourite);
+  }
+
+  useEffect(() => {
+    let allFavs = localStorage.getItem("favMovies");
+
+    if (!allFavs && isFavourite) {
+      localStorage.setItem("favMovies", `${id};`);
+    } else if (allFavs && !isFavourite) {
+      allFavs = allFavs.replaceAll(`${id};`, "");
+      localStorage.setItem("favMovies", allFavs);
+    } else if (allFavs && isFavourite) {
+      allFavs += `${id};`;
+      localStorage.setItem("favMovies", allFavs);
+    }
+  }, [isFavourite]);
+
   return (
     <div
-      className='movieCard  m-auto mt-6 grid grid-cols-2 gap-1 text-sm text-gray hover:scale-105 transition-transform duration-500 ease-in-out'
+      className='movieCard relative m-auto mt-6 grid grid-cols-2 gap-1 text-sm text-gray hover:scale-105 transition-transform duration-500 ease-in-out'
       data-testid='movie-card'
     >
+      <button
+        type='button'
+        className=' absolute top-2 right-2 flex justify-center items-center w-5 h-5 p-1 bg-[rgba(243,244,246,0.5)] rounded-full text-gray'
+        onClick={toggleFavourite}
+      >
+        <Favorite className={isFavourite ? "text-rose" : "text-[#d1d5db]"} />
+      </button>
+
       <Link to={`/movies/${id}`} className='col-span-full w-full'>
         <img
           className='col-span-full w-full'

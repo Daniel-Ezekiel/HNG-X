@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import { HashLoader } from "react-spinners";
 import TopSection from "../components/homePageComponents/TopSection";
@@ -9,6 +9,7 @@ const Homepage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [movies, setMovies] = useState(null);
   const [searchValue, setSearchValue] = useState("");
+  const featuredMoviesRef = useRef(null);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -29,8 +30,26 @@ const Homepage = () => {
   }, []);
 
   function searchMovies(event) {
-    console.log(searchValue);
     event.stopPropagation();
+    if (!searchValue) return;
+    featuredMoviesRef.current.scrollIntoView({ behavior: "smooth" });
+    const fetchURL = `https://api.themoviedb.org/3/search/movie?query=${searchValue}&api_key=6f687067231f0a6ceb9c0cae600a334c`;
+
+    setIsLoading(true);
+
+    const fetchMoviesFromSearch = async () => {
+      try {
+        const res = await axios.get(fetchURL);
+
+        setMovies(res.data.results);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchMoviesFromSearch();
   }
 
   return (
@@ -43,7 +62,7 @@ const Homepage = () => {
             handleChange={(e) => setSearchValue(e.target.value)}
             handleSearch={searchMovies}
           />
-          <FeaturedMovies loading={isLoading} movieList={movies} />
+          <FeaturedMovies movieList={movies} ref={featuredMoviesRef} />
           <Footer />
         </>
       )}

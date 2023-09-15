@@ -1,10 +1,11 @@
-// import { useState, useEffect } from "react";
-// import axios from "axios";
-// import { HashLoader } from "react-spinners";
+import { useState } from "react";
 import MovieCard from "./MovieCard";
 import { ArrowForwardIosRounded } from "@mui/icons-material";
 
 const FeaturedMovies = ({ movieList }) => {
+  const allFavMovieIds = localStorage.getItem("favMovies") || "";
+  console.log(allFavMovieIds);
+
   const moviesCards = movieList.map((movie) => (
     <MovieCard
       key={movie.id}
@@ -13,10 +14,10 @@ const FeaturedMovies = ({ movieList }) => {
       releaseDate={movie.release_date}
       title={movie.title}
       rating={movie.vote_average}
+      favourited={allFavMovieIds.includes(`${movie.id}`)}
     />
   ));
 
-  console.log(movieList);
   return (
     <main className='mt-6 p-4 grid grid-cols-5 items-center max-w-[120rem] mx-auto'>
       <h2 className='col-span-3 py-2 font-bold text-3xl'>Featured Movies</h2>
