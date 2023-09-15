@@ -15,7 +15,7 @@ Open [http://localhost:5137](http://localhost:5137) to view it in your browser.
 
 ## About the App
 
-![Preview App](https://images2.imgbox.com/dc/50/sruZZQsy_o.png)
+![Movie App Preview](https://images2.imgbox.com/dc/50/sruZZQsy_o.png)
 
 The app is a dynamic movie discovery app that interacts with a real API to fetch and display movie data. Here are the basic features of the App:
 
