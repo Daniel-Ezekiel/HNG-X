@@ -15,6 +15,8 @@ Open [http://localhost:5137](http://localhost:5137) to view it in your browser.
 
 ## About the App
 
+![Preview App](https://images2.imgbox.com/dc/50/sruZZQsy_o.png)
+
 The app is a dynamic movie discovery app that interacts with a real API to fetch and display movie data. Here are the basic features of the App:
 
 - On page load, in the header section, you get preview of a trending movie of the day and you can use the 'Show next movie button' to preview 4 other movies;

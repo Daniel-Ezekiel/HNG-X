@@ -60,7 +60,9 @@ const Homepage = () => {
 
   return (
     <>
-      {isLoading && <HashLoader color='rgb(190,18,60)' className='mx-auto' />}
+      {isLoading && (
+        <HashLoader color='rgb(190,18,60)' className='mx-auto mt-8' />
+      )}
       {!isLoading && (
         <>
           <TopSection
