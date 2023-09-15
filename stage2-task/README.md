@@ -20,5 +20,5 @@ The app is a dynamic movie discovery app that interacts with a real API to fetch
 - On page load, in the header section, you get preview of a trending movie of the day and you can use the 'Show next movie button' to preview 4 other movies;
 - A search feature to find a movie of choice and results get displayed in the featured movies section;
 - In the featured movies section, a grid of cards that shows 10 most popular movies is displayed with basic info like the title, release date and ratings;
-- On selecting a movie card, you get redirected to another page that shows more info about the selected movie like the poster image, title, runtime and release date
+- On selecting a movie card, you get redirected to another page that shows more info about the selected movie like the poster image, title, runtime and release date.
 
