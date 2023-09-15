@@ -13,8 +13,11 @@ const MovieCard = ({ id, imgSrc, releaseDate, title, rating, favourited }) => {
   }
 
   useEffect(() => {
-    let allFavs = localStorage.getItem("favMovies");
+    let allFavs = [
+      ...new Set(localStorage.getItem("favMovies")?.split(";")),
+    ].join(";");
 
+    localStorage.clear();
     if (!allFavs && isFavourite) {
       localStorage.setItem("favMovies", `${id};`);
     } else if (allFavs && !isFavourite) {

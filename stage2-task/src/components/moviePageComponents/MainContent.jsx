@@ -1,4 +1,5 @@
 import placeholderImg from "../../assets/img/placeholderImg.png";
+import play from "../../assets/img/play.png";
 import {
   ConfirmationNumberRounded,
   FormatListBulletedRounded,
@@ -16,18 +17,21 @@ const MainContent = ({
   rating,
   genres,
 }) => {
-  console.log(genres);
   const genreList = genres.map((genre) => (
     <Genre key={genre.id} genreName={genre.name} />
   ));
   return (
     <main className='p-4 grid gap-3 lg:grid-cols-12 xl:col-start-3 xl:col-span-10 xl:pt-[4rem] xl:px-[7rem]'>
-      <div className='movie-trailer h-[20rem] rounded-2xl overflow-hidden sm:h-[30rem] lg:col-span-full lg:h-[45rem] xl:h-[50rem]'>
+      <div className='relative h-[20rem] rounded-2xl overflow-hidden sm:h-[30rem] lg:col-span-full lg:h-[45rem] xl:h-[50rem]'>
         <img
           src={`https://image.tmdb.org/t/p/original/${imgSrc}`}
           alt='movie poster'
           className='w-full object-cover'
         />
+
+        <div className='absolute bg-black p-4 rounded-full top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] bg-[rgba(236,236,236,0.4)] animate-pulse'>
+          <img src={play} alt='play' className='w-full h-full' />
+        </div>
       </div>
 
       <div className='movieDetails grid grid-cols-4 items-center gap-3 font-medium text-xl md:grid-cols-10 lg:grid-cols-8 lg:col-span-7'>
@@ -77,9 +81,11 @@ const MainContent = ({
 
         <div className='flex items-center col-span-full border border-gray rounded-2xl'>
           <span className='mr-4 p-2 rounded-2xl bg-rose text-white'>
-            Top rated movie #65
+            Top rated movie
           </span>
-          <span className='mr-auto'>Awards 9 nominations</span>
+          <span className='mr-auto'>
+            Awards: {Math.floor(rating)} nominations
+          </span>
           <KeyboardArrowDownRounded fontSize='large' className='mr-3' />
         </div>
       </div>
@@ -101,7 +107,7 @@ const MainContent = ({
         <div className='relative rounded-xl overflow-hidden'>
           <img
             src={placeholderImg}
-            alt=''
+            alt='Placeholder Image'
             className='w-full h-full object-cover'
           />
 

@@ -20,6 +20,9 @@ const Homepage = () => {
 
         setMovies(res.data.results.slice(0, 10));
       } catch (err) {
+        alert(
+          `Could not get movie(s): ${err}. It could be a network error. Kindly check your network connection and try again`
+        );
         console.log(err);
       } finally {
         setIsLoading(false);
@@ -43,6 +46,9 @@ const Homepage = () => {
 
         setMovies(res.data.results);
       } catch (err) {
+        alert(
+          `Could not get movie(s): ${err}. It could be a network error. Kindly check your network connection and try again`
+        );
         console.log(err);
       } finally {
         setIsLoading(false);

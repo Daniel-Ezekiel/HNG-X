@@ -27,6 +27,9 @@ const TopSection = ({ query, handleChange, handleSearch }) => {
 
         setMovies(res.data.results.slice(0, 5));
       } catch (err) {
+        alert(
+          `Could not get movies: ${err}. It could be a network error. Kindly check your network connection and try again`
+        );
         console.log(err);
       } finally {
         setIsLoading(false);

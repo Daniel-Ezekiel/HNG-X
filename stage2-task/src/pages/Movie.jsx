@@ -19,6 +19,9 @@ const Movie = () => {
 
         setMovieInfo(res.data);
       } catch (err) {
+        alert(
+          `Could not get movie(s). It could be a network error. Kindly check your network connection and try again`
+        );
         console.log(err);
       } finally {
         setIsLoading(false);

@@ -2,10 +2,10 @@
 import { forwardRef } from "react";
 import MovieCard from "./MovieCard";
 import { ArrowForwardIosRounded } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const FeaturedMovies = forwardRef(function FeaturedMovies({ movieList }, ref) {
   const allFavMovieIds = localStorage.getItem("favMovies") || "";
-  console.log(allFavMovieIds);
 
   const moviesCards = movieList.map((movie) => (
     <MovieCard
@@ -25,12 +25,21 @@ const FeaturedMovies = forwardRef(function FeaturedMovies({ movieList }, ref) {
       ref={ref}
     >
       <h2 className='col-span-3 py-2 font-bold text-3xl'>Featured Movies</h2>
-      <p className='col-span-2 col-start-4 justify-self-end font-bold text-xl text-rose'>
-        See more <ArrowForwardIosRounded fontSize='medium' />
-      </p>
+      <Link
+        to=''
+        className='col-span-2 col-start-4 justify-self-end font-bold text-xl text-rose'
+      >
+        View Favourites <ArrowForwardIosRounded fontSize='medium' />
+      </Link>
 
       <div className='movie-listing col-span-full grid sm:grid-cols-2 sm:gap-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
-        {moviesCards}
+        {!moviesCards.length && (
+          <p className='mx-auto mt-8 text-3xl text-center col-span-full'>
+            No movie card to show! Check your search query or your internet
+            connection.
+          </p>
+        )}
+        {moviesCards && moviesCards}
       </div>
     </main>
   );
