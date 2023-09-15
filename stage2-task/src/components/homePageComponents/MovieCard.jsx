@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 
 const MovieCard = ({ id, imgSrc, releaseDate, title, rating, favourited }) => {
   const [isFavourite, setIsFavourite] = useState(favourited);
-  console.log(isFavourite);
 
   function toggleFavourite(event) {
     event.stopPropagation();

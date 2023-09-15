@@ -61,7 +61,7 @@ const Movie = () => {
             title={title}
             details={overview}
             imgSrc={backdrop_path}
-            year={release_date.slice(0, 4)}
+            releaseDate={release_date}
             length={runtime}
             rating={vote_average}
             genres={genres}

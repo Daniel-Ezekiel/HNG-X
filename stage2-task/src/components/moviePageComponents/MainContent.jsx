@@ -13,7 +13,7 @@ const MainContent = ({
   title,
   details,
   imgSrc,
-  year,
+  releaseDate,
   length,
   rating,
   genres,
@@ -39,7 +39,7 @@ const MainContent = ({
           </h1>
           •
           <span className='col-span-1' data-testid='movie-release-date'>
-            {year}
+            {new Date(releaseDate).toUTCString()}
           </span>
           •
           <span className='col-span-1' data-testid='movie-runtime'>
