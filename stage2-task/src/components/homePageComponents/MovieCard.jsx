@@ -70,9 +70,9 @@ const MovieCard = ({ id, imgSrc, releaseDate, title, rating, favourited }) => {
         {(rating * 10).toPrecision(2)}%
       </span>
 
-      <span className='w-full col-span-full font-bold'>
+      {/* <span className='w-full col-span-full font-bold'>
         Animation, Action, Adventure
-      </span>
+      </span> */}
     </div>
   );
 };

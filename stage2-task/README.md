@@ -1,8 +1,24 @@
-# React + Vite
+# Movie Box
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Available Scripts
 
-Currently, two official plugins are available:
+In the project directory, to install the necessary modules, you can run:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### `npm install`
+
+then, to run the app in development mode, you can run
+
+### `npm run dev`
+
+Runs the app in the development mode.\
+Open [http://localhost:5137](http://localhost:5137) to view it in your browser.
+
+## About the App
+
+The app is a dynamic movie discovery app that interacts with a real API to fetch and display movie data. Here are the basic features of the App:
+
+- On page load, in the header section, you get preview of a trending movie of the day and you can use the 'Show next movie button' to preview 4 other movies;
+- A search feature to find a movie of choice and results get displayed in the featured movies section;
+- In the featured movies section, a grid of cards that shows 10 most popular movies is displayed with basic info like the title, release date and ratings;
+- On selecting a movie card, you get redirected to another page that shows more info about the selected movie like the poster image, title, runtime and release date
+

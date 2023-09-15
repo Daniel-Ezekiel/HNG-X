@@ -6,7 +6,11 @@ import logo from "../../assets/img/logo.png";
 import menu from "../../assets/img/menu.png";
 import imdb from "../../assets/img/imdb.png";
 import tomato from "../../assets/img/tomato.png";
-import { PlayCircle, SearchOutlined } from "@mui/icons-material";
+import {
+  ArrowForwardIos,
+  PlayCircle,
+  SearchOutlined,
+} from "@mui/icons-material";
 
 const TopSection = ({ query, handleChange, handleSearch }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -35,9 +39,7 @@ const TopSection = ({ query, handleChange, handleSearch }) => {
   const movie = !isLoading && movies[position];
 
   function changeMovie() {
-    position > 4
-      ? setPosition((prevPos) => 0)
-      : setPosition((prevPos) => prevPos + 1);
+    position > 3 ? setPosition(0) : setPosition((prevPos) => prevPos + 1);
   }
 
   return (
@@ -101,7 +103,7 @@ const TopSection = ({ query, handleChange, handleSearch }) => {
               </span>
               <span className='col-span-2 flex items-center gap-1 z-[2]'>
                 <img src={tomato} alt='imdb icon' />
-                {(movie.vote_average * 10).toPrecision(3)}%
+                {(movie.vote_average * 10).toPrecision(2)}%
               </span>
 
               <p className='col-span-full z-[2]'>{movie.overview}</p>
@@ -119,8 +121,8 @@ const TopSection = ({ query, handleChange, handleSearch }) => {
                 type='button'
                 onClick={changeMovie}
               >
-                <PlayCircle fontSize='large' />
-                Next Movie
+                Show next Movie
+                <ArrowForwardIos />
               </button>
             </div>
           </section>

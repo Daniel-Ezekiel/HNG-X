@@ -3,8 +3,6 @@ import {
   ConfirmationNumberRounded,
   FormatListBulletedRounded,
   KeyboardArrowDownRounded,
-  Star,
-  StarOutlineRounded,
   StarRounded,
 } from "@mui/icons-material";
 import Genre from "./Genre";
@@ -64,17 +62,17 @@ const MainContent = ({
 
         <p className='col-span-full text-rose'>
           <span className='text-dark-gray'>Director : </span>
-          Joseph Kosinski
+          Director 1, Director 2
         </p>
 
         <p className='col-span-full text-rose'>
           <span className='text-dark-gray'>Writers : </span>
-          Joseph Kosinski
+          Writer 1
         </p>
 
         <p className='col-span-full text-rose'>
           <span className='text-dark-gray'>Stars : </span>
-          Joseph Kosinski
+          Star Actor 1, Star Actor 2, Star Actor 3
         </p>
 
         <div className='flex items-center col-span-full border border-gray rounded-2xl'>
