@@ -2,14 +2,14 @@ import { SearchOutlined } from "@mui/icons-material";
 import ImageBox from "./ImageBox";
 import imgData from "../data";
 
-const MainContent = () => {
+const MainContent = ({ userLoggedIn }) => {
   const imgElements = imgData.map((data) => (
     <ImageBox key={data.id} src={data.src} tags={data.tags} />
   ));
 
   return (
-    <main className='grid gap-4 p-4'>
-      <div className='relative'>
+    <main className='grid gap-4 p-4 max-w-[120rem] mx-auto'>
+      <div className='relative max-w-[50%]'>
         <input
           type='text'
           placeholder='Search images using tags'
@@ -20,7 +20,9 @@ const MainContent = () => {
         </button>
       </div>
 
-      <div className='mt-5 grid gap-4'>{imgElements}</div>
+      <div className='mt-5 grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+        {imgElements}
+      </div>
     </main>
   );
 };
