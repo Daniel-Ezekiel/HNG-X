@@ -38,7 +38,7 @@ export default [
 
   {
     id: 6,
-    src: "./src/assets/images/6.jpg",
+    src: "src/assets/images/6.jpg",
     tags: ["football", "wallpaper"],
     type: "landscape",
   },
