@@ -4,7 +4,7 @@ import imgData from "../data";
 
 const MainContent = ({ userLoggedIn }) => {
   const imgElements = imgData.map((data) => (
-    <ImageBox key={data.id} src={data.src} tags={data.tags} />
+    <ImageBox key={data.id} id={data.id} src={data.src} tags={data.tags} />
   ));
 
   return (
