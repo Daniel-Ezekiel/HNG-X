@@ -1,25 +1,51 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import SignIn from "./pages/SignIn";
 import { useState } from "react";
-import Header from "./components/Header";
-import MainContent from "./components/MainContent";
-import Popup from "./components/Popup";
+import { updatePassword } from "firebase/auth";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [showPopup, setShowPopup] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [currentUser, setCurrentUser] = useState(null);
 
-  function togglePopup(event) {
-    event.stopPropagation();
+  const updateEmail = (event) => {
+    event.preventDefault();
+    setEmail(event.target.value);
+  };
 
-    // console.log(isLoggedIn, showPopup);
-    setShowPopup(!showPopup);
-  }
+  const updatePassword = (event) => {
+    event.preventDefault();
+    setPassword(event.target.value);
+  };
+
+  const signIn = (event) => {
+    event.preventDefault();
+    console.log("Handling update!");
+  };
 
   return (
-    <>
-      <Header userLoggedIn={isLoggedIn} handlePopupOpen={togglePopup} />
-      <MainContent userLoggedIn={isLoggedIn} />
-      {showPopup && <Popup handlePopupClose={togglePopup} />}
-    </>
+    <Router>
+      <div>
+        <Routes>
+          <Route exact path='/' element={<Home currUser={currentUser} />} />
+          <Route
+            exact
+            path='/signin'
+            element={
+              <SignIn
+                email={email}
+                password={password}
+                currentUser={currentUser}
+                updateEmailVal={updateEmail}
+                updatePasswordVal={updatePassword}
+                handleSignin={signIn}
+              />
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
