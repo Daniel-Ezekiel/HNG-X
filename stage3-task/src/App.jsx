@@ -1,13 +1,22 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  redirect,
+  Navigate,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import { useState } from "react";
-import { updatePassword } from "firebase/auth";
+import { auth } from "./firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 function App() {
+  // const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
+  const [error, setError] = useState(null);
 
   const updateEmail = (event) => {
     event.preventDefault();
@@ -19,10 +28,28 @@ function App() {
     setPassword(event.target.value);
   };
 
-  const signIn = (event) => {
+  const signIn = async (event) => {
     event.preventDefault();
-    console.log("Handling update!");
+    await signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        setCurrentUser(user);
+        console.log(userCredential);
+      })
+      .then(redirect("/"))
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setError(error);
+        console.log(errorCode, errorMessage);
+      });
+    // <Navigate to='/' />;
+    return redirect("/");
+    // console.log("Handling update!");
   };
+
+  console.log(currentUser, error);
 
   return (
     <Router>

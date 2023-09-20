@@ -5,20 +5,29 @@ import { auth } from "../firebase";
 const Header = ({ currentUser }) => {
   return (
     <header className='flex justify-between p-4 py-7 max-w-[120rem] mx-auto'>
-      <h1 className='w-[10rem] font-bold text-3xl italic leading-10'>
+      <h1 className='w-[fit-content] font-bold text-xl md:text-3xl italic leading-10 md:max-w-[20rem]'>
         Galleria D'Immagini
       </h1>
 
       {currentUser ? (
-        <Link
-          className='text-xl hover:underline'
-          onClick={() => auth.signOut()}
-        >
-          <button>Sign out</button>
-        </Link>
+        <p className='text-base text-right md:text-xl'>
+          Signed in ({currentUser}){" "}
+          <button
+            type='button'
+            className='md:text-xl bg-rose p-1 px-2 rounded-full text-white hover:underline'
+            onClick={() => auth.signOut()}
+          >
+            Sign out
+          </button>
+        </p>
       ) : (
         <Link to='/signin' className='text-xl hover:underline'>
-          Sign In
+          <button
+            type='button'
+            className='text-xl bg-rose p-1 px-2 rounded-full text-white hover:underline'
+          >
+            Sign in
+          </button>
         </Link>
       )}
     </header>
