@@ -1,15 +1,14 @@
 import { Close, SearchOutlined } from "@mui/icons-material";
 import ImageBox from "./ImageBox";
 import imgData from "../data";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 const MainContent = ({ userLoggedIn }) => {
-  const removeTagRef = useRef();
   const [searchVal, setSearchVal] = useState("");
   const [searchTags, setSearchTags] = useState([]);
 
   const handleSearch = () => {
-    const uniqueTags = [...new Set(searchTags), searchVal.trim()];
+    const uniqueTags = [...new Set(searchTags), searchVal.trim().toLowerCase()];
     setSearchTags([...new Set(uniqueTags)]);
     setSearchVal("");
   };
@@ -46,7 +45,6 @@ const MainContent = ({ userLoggedIn }) => {
         <button
           type='button'
           className='flex justify-center items-center ml-2 p-2 w-3 h-3 rounded-full border'
-          ref={removeTagRef}
           onClick={removeTag}
         >
           <Close />
