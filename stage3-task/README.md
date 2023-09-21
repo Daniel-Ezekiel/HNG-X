@@ -25,6 +25,11 @@ Open [http://localhost:5137](http://localhost:5137) to view it in your browser.
 
 ![Gallery Preview](https://github.com/Daniel-Ezekiel/HNG-X/blob/main/stage3-task/preview/gallery.png)
 
+### Test User Signin Info
+
+- **`Email`**: user@example.com
+- **`Password`**: 1Password
+
 The app is a gallery showcasing different images to a signed in user. The app has some cool features that are detailed as follows:
 
 - **`Sign In`**: On page load, there is a restriction to unauthorised users to sign in before engaging with the app;
