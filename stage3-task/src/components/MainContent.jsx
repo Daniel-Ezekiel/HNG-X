@@ -4,6 +4,7 @@ import imgData from "../data";
 import { useState } from "react";
 
 const MainContent = ({ userLoggedIn }) => {
+  const [allImages, setAllImages] = useState(imgData);
   const [searchVal, setSearchVal] = useState("");
   const [searchTags, setSearchTags] = useState([]);
 
@@ -21,7 +22,7 @@ const MainContent = ({ userLoggedIn }) => {
   };
 
   const imgElements = searchTags.length
-    ? imgData
+    ? allImages
         .filter((data) => data.tags.some((tag) => searchTags.includes(tag)))
         .map((data) => (
           <ImageBox
@@ -31,7 +32,7 @@ const MainContent = ({ userLoggedIn }) => {
             tags={data.tags}
           />
         ))
-    : imgData.map((data) => (
+    : allImages.map((data) => (
         <ImageBox key={data.id} id={data.id} src={data.src} tags={data.tags} />
       ));
 
