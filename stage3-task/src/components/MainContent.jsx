@@ -1,12 +1,14 @@
+import { useEffect, useRef, useState } from "react";
 import { Close, SearchOutlined } from "@mui/icons-material";
 import ImageBox from "./ImageBox";
 import imgData from "../data";
-import { useEffect, useRef, useState } from "react";
+import { CircleLoader } from "react-spinners";
 
 const MainContent = ({ userLoggedIn }) => {
   const [allImages, setAllImages] = useState(imgData);
   const [searchVal, setSearchVal] = useState("");
   const [searchTags, setSearchTags] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const dragImage = useRef(0);
   const draggedOverImage = useRef(0);
 
@@ -66,6 +68,7 @@ const MainContent = ({ userLoggedIn }) => {
   );
 
   useEffect(() => {
+    setIsLoading(true);
     if (searchTags.length) {
       const newImgArr = imgData.filter((data) =>
         data.tags.some((tag) => searchTags.includes(tag))
@@ -74,6 +77,8 @@ const MainContent = ({ userLoggedIn }) => {
     } else {
       setAllImages(imgData);
     }
+
+    setTimeout(() => setIsLoading(false), 1000);
   }, [searchTags]);
 
   return (
@@ -96,15 +101,19 @@ const MainContent = ({ userLoggedIn }) => {
 
       <div className='flex flex-wrap gap-3'>{tagElements}</div>
 
-      <div className='mt-5 grid gap-4 grid-cols-2 grid-flow-dense md:grid-cols-3 lg:grid-cols-4'>
-        {imgElements.length ? (
-          imgElements
-        ) : (
-          <p className='text-base text-center'>
-            Sorry, your search did not give any results.
-          </p>
-        )}
-      </div>
+      {isLoading ? (
+        <CircleLoader className='mx-auto' />
+      ) : (
+        <div className='mt-5 grid gap-4 grid-cols-2 grid-flow-dense md:grid-cols-3 lg:grid-cols-4'>
+          {imgElements.length ? (
+            imgElements
+          ) : (
+            <p className='col-span-full text-base text-center'>
+              Sorry, your search did not give any results.
+            </p>
+          )}
+        </div>
+      )}
     </main>
   );
 };
