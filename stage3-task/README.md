@@ -15,7 +15,13 @@ Open [http://localhost:5137](http://localhost:5137) to view it in your browser.
 
 ## About the App
 
-<!-- ![Movie App Preview](https://images2.imgbox.com/dc/50/sruZZQsy_o.png) -->
+##### Sign-in page Preview
+
+![Sign in Preview]()
+
+##### Gallery page Preview
+
+![Gallery Preview]()
 
 The app is a gallery showcasing different images to a signed in user. The app has some cool features that are detailed as follows:
 
