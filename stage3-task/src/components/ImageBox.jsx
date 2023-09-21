@@ -9,8 +9,11 @@ const ImageBox = ({
   handleDragEnter,
   handleDragEnd,
   handleDragOver,
+  updateSearchTags,
 }) => {
-  const tagSpans = tags.map((tag, i) => <Tag key={i} tagVal={tag} />);
+  const tagSpans = tags.map((tag, i) => (
+    <Tag key={i} tagVal={tag} updateSearchTag={updateSearchTags} />
+  ));
 
   return (
     <div

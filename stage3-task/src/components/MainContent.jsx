@@ -46,6 +46,14 @@ const MainContent = ({ userLoggedIn }) => {
       handleDragEnter={() => (draggedOverImage.current = i)}
       handleDragEnd={handleSort}
       handleDragOver={(event) => event.preventDefault()}
+      updateSearchTags={(event) => {
+        event.preventDefault();
+        const tag = event.target.textContent.trim();
+        console.log(tag);
+
+        if (searchTags.includes(tag)) return;
+        setSearchTags((prevTags) => [...prevTags, tag]);
+      }}
     />
   ));
 
