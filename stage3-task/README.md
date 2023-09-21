@@ -17,11 +17,11 @@ Open [http://localhost:5137](http://localhost:5137) to view it in your browser.
 
 ##### Sign-in page Preview
 
-![Sign in Preview]()
+![Sign in Preview](https://github.com/Daniel-Ezekiel/HNG-X/blob/main/stage3-task/preview/signin.png)
 
 ##### Gallery page Preview
 
-![Gallery Preview]()
+![Gallery Preview](https://github.com/Daniel-Ezekiel/HNG-X/blob/main/stage3-task/preview/gallery.png)
 
 The app is a gallery showcasing different images to a signed in user. The app has some cool features that are detailed as follows:
 

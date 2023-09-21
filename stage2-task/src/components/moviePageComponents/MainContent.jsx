@@ -6,9 +6,13 @@ import {
   KeyboardArrowDownRounded,
   StarRounded,
 } from "@mui/icons-material";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { HashLoader } from "react-spinners";
 import Genre from "./Genre";
 
 const MainContent = ({
+  id,
   title,
   details,
   imgSrc,
@@ -17,21 +21,52 @@ const MainContent = ({
   rating,
   genres,
 }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [trailerID, setTrailerID] = useState(null);
+
+  useEffect(() => {
+    const fetchTrailerInfo = async () => {
+      try {
+        const res = await axios.get(
+          `https://youtube.googleapis.com/youtube/v3/search?q=${title}+trailer&key=AIzaSyDJ7tq6AzfN5SOm2ZL9Clov3kmdGzq35y4`
+        );
+
+        setTrailerID(res.data.items[0].id.videoId);
+        console.log(trailerID);
+      } catch (err) {
+        alert(
+          `Could not get movie(s). It could be a network error. Kindly check your network connection and try again`
+        );
+        console.log(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchTrailerInfo();
+  }, []);
+
   const genreList = genres.map((genre) => (
     <Genre key={genre.id} genreName={genre.name} />
   ));
+
   return (
     <main className='p-4 grid gap-3 lg:grid-cols-12 xl:col-start-3 xl:col-span-10 xl:pt-[4rem] xl:px-[7rem]'>
-      <div className='relative h-[20rem] rounded-2xl overflow-hidden sm:h-[30rem] lg:col-span-full lg:h-[45rem] xl:h-[50rem]'>
-        <img
-          src={`https://image.tmdb.org/t/p/original/${imgSrc}`}
-          alt='movie poster'
-          className='w-full object-cover'
-        />
+      <div className='relative h-[20rem] rounded-2xl overflow-hidden sm:h-[30rem] lg:col-span-full lg:h-[45rem] xl:h-[55rem]'>
+        {isLoading && <HashLoader className='mx-auto mt-6 text-rose' />}
+        {!isLoading && (
+          <iframe
+            className='w-full h-full'
+            src={`https://www.youtube.com/embed/${trailerID}`}
+            allowFullScreen
+          ></iframe>
 
-        <div className='absolute bg-black p-4 rounded-full top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] bg-[rgba(236,236,236,0.4)] animate-pulse'>
-          <img src={play} alt='play' className='w-full h-full' />
-        </div>
+          // <img
+          //   src={`https://image.tmdb.org/t/p/original/${imgSrc}`}
+          //   alt='movie poster'
+          //   className='w-full object-cover'
+          // />
+        )}
       </div>
 
       <div className='movieDetails grid grid-cols-4 items-center gap-3 font-medium text-xl md:grid-cols-10 lg:grid-cols-8 lg:col-span-7'>

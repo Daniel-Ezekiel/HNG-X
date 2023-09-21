@@ -4,8 +4,8 @@ import tomato from "../../assets/img/tomato.png";
 import { Favorite } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 
-const MovieCard = ({ id, imgSrc, releaseDate, title, rating, favourited }) => {
-  const [isFavourite, setIsFavourite] = useState(favourited);
+const MovieCard = (props) => {
+  const [isFavourite, setIsFavourite] = useState(props.favourited);
 
   function toggleFavourite(event) {
     event.stopPropagation();
@@ -19,12 +19,12 @@ const MovieCard = ({ id, imgSrc, releaseDate, title, rating, favourited }) => {
 
     localStorage.clear();
     if (!allFavs && isFavourite) {
-      localStorage.setItem("favMovies", `${id};`);
+      localStorage.setItem("favMovies", `${JSON.stringify(props)};`);
     } else if (allFavs && !isFavourite) {
-      allFavs = allFavs.replaceAll(`${id};`, "");
+      allFavs = allFavs.replaceAll(`${JSON.stringify(props)};`, "");
       localStorage.setItem("favMovies", allFavs);
     } else if (allFavs && isFavourite) {
-      allFavs += `${id};`;
+      allFavs += `${JSON.stringify(props)};`;
       localStorage.setItem("favMovies", allFavs);
     }
   }, [isFavourite]);
@@ -42,10 +42,10 @@ const MovieCard = ({ id, imgSrc, releaseDate, title, rating, favourited }) => {
         <Favorite className={isFavourite ? "text-rose" : "text-[#d1d5db]"} />
       </button>
 
-      <Link to={`/movies/${id}`} className='col-span-full w-full'>
+      <Link to={`/movies/${props.id}`} className='col-span-full w-full'>
         <img
           className='col-span-full w-full'
-          src={`https://image.tmdb.org/t/p/w500${imgSrc}`}
+          src={`https://image.tmdb.org/t/p/w500${props.imgSrc}`}
           alt='Movie poster'
           data-testid='movie-poster'
         />
@@ -54,23 +54,23 @@ const MovieCard = ({ id, imgSrc, releaseDate, title, rating, favourited }) => {
         className='col-span-full font-bold'
         data-testid='movie-release-date'
       >
-        {releaseDate}
+        {props.releaseDate}
       </span>
 
       <Link
-        to={`/movies/${id}`}
+        to={`/movies/${props.id}`}
         className='col-span-full font-bold text-2xl text-dark-gray hover:underline'
       >
-        <h3 data-testid='movie-title'>{title}</h3>
+        <h3 data-testid='movie-title'>{props.title}</h3>
       </Link>
 
       <span className='col-span-1 w-[fit-content] flex items-center gap-1 text-dark-gray'>
         <img src={imdb} alt='imdb icon' />
-        {rating.toPrecision(2)}/10
+        {props.rating.toPrecision(2)}/10
       </span>
       <span className='col-span-1 flex justify-end items-center gap-1 text-dark-gray'>
         <img src={tomato} alt='imdb icon' />
-        {(rating * 10).toPrecision(2)}%
+        {(props.rating * 10).toPrecision(2)}%
       </span>
 
       {/* <span className='w-full col-span-full font-bold'>
