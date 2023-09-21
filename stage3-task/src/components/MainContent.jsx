@@ -49,7 +49,6 @@ const MainContent = ({ userLoggedIn }) => {
       updateSearchTags={(event) => {
         event.preventDefault();
         const tag = event.target.textContent.trim();
-        console.log(tag);
 
         if (searchTags.includes(tag)) return;
         setSearchTags((prevTags) => [...prevTags, tag]);
