@@ -22,6 +22,7 @@ const SignIn = () => {
 
   const signIn = async (event) => {
     event.preventDefault();
+    setError(null);
     await signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
@@ -34,7 +35,7 @@ const SignIn = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         setError(error);
-        console.log(errorCode, errorMessage);
+        console.log(error);
       });
     // console.log("Handling update!");
   };
@@ -50,24 +51,43 @@ const SignIn = () => {
         <p className='text-xl'>Get full access to the features right away!</p>
         <h2 className='font-bold text-2xl'>Login to your account</h2>
         <div className='grid gap-4 mt-4'>
-          <input
-            type='email'
-            name='email'
-            placeholder='Enter your email address'
-            value={email}
-            onChange={updateEmail}
-            required
-            className='text-xl border p-2 px-4 rounded-full text-dark-gray placeholder:text-dark-gray'
-          />
-          <input
-            type='password'
-            name='password'
-            placeholder='Enter your password'
-            value={password}
-            onChange={updatePassword}
-            required
-            className='text-xl border p-2 px-4 rounded-full text-dark-gray placeholder:text-dark-gray'
-          />
+          <div>
+            <input
+              type='email'
+              name='email'
+              placeholder='Enter your email address'
+              value={email}
+              onChange={updateEmail}
+              required
+              className={`w-full text-xl border p-2 px-4 rounded-full text-dark-gray placeholder:text-dark-gray ${
+                error && "border-[red]"
+              }`}
+            />
+            {error && (
+              <p className='pl-3 text-left text-[red]'>
+                Wrong email or password
+              </p>
+            )}
+          </div>
+
+          <div>
+            <input
+              type='password'
+              name='password'
+              placeholder='Enter your password'
+              value={password}
+              onChange={updatePassword}
+              required
+              className={`w-full text-xl border p-2 px-4 rounded-full text-dark-gray placeholder:text-dark-gray ${
+                error && "border-[red]"
+              }`}
+            />
+            {error && (
+              <p className='pl-3 text-left text-[red]'>
+                Wrong email or password
+              </p>
+            )}
+          </div>
           <button
             type='submit'
             className='p-2  rounded-full bg-rose font-bold text-xl text-white hover:scale-105'
