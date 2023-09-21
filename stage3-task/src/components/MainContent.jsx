@@ -1,16 +1,26 @@
-import { useEffect, useRef, useState } from "react";
 import { Close, SearchOutlined } from "@mui/icons-material";
 import ImageBox from "./ImageBox";
 import imgData from "../data";
-import { CircleLoader } from "react-spinners";
+import { useEffect, useState } from "react";
+import {
+  DndContext,
+  MouseSensor,
+  TouchSensor,
+  closestCenter,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  arrayMove,
+  rectSortingStrategy,
+} from "@dnd-kit/sortable";
+import SortableItem from "./SortableItem";
 
 const MainContent = ({ userLoggedIn }) => {
   const [allImages, setAllImages] = useState(imgData);
   const [searchVal, setSearchVal] = useState("");
   const [searchTags, setSearchTags] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const dragImage = useRef(0);
-  const draggedOverImage = useRef(0);
 
   const handleSearch = () => {
     const uniqueTags = [...new Set(searchTags), searchVal.trim().toLowerCase()];
@@ -25,36 +35,9 @@ const MainContent = ({ userLoggedIn }) => {
     setSearchTags(newSearchTags);
   };
 
-  const handleSort = () => {
-    const allImagesClone = [...allImages];
-    const temp = allImagesClone[dragImage.current];
-    allImagesClone[dragImage.current] =
-      allImagesClone[draggedOverImage.current];
-    allImagesClone[draggedOverImage.current] = temp;
-
-    setAllImages(allImagesClone);
-  };
-
-  const imgElements = allImages.map((data, i) => (
-    <ImageBox
-      key={i}
-      id={data.id}
-      src={data.src}
-      tags={data.tags}
-      orientation={data.type}
-      handleDragStart={() => (dragImage.current = i)}
-      handleDragEnter={() => (draggedOverImage.current = i)}
-      handleDragEnd={handleSort}
-      handleDragOver={(event) => event.preventDefault()}
-      updateSearchTags={(event) => {
-        event.preventDefault();
-        const tag = event.target.textContent.trim();
-
-        if (searchTags.includes(tag)) return;
-        setSearchTags((prevTags) => [...prevTags, tag]);
-      }}
-    />
-  ));
+  // const imgElements = allImages.map((data, i) => (
+  //   <SortableItem key={data.id} item={data} />
+  // ));
 
   const tagElements = searchTags.map((tag, i) =>
     tag ? (
@@ -74,8 +57,24 @@ const MainContent = ({ userLoggedIn }) => {
     ) : null
   );
 
+  const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
+
+  const handleDragEnd = (event) => {
+    console.log(event);
+    const { active, over } = event;
+    if (active.id === over.id) {
+      return;
+    }
+
+    setAllImages((images) => {
+      const oldIndex = images.findIndex((image) => image.id == active.id);
+      const newIndex = images.findIndex((image) => image.id === over.id);
+
+      return arrayMove(images, oldIndex, newIndex);
+    });
+  };
+
   useEffect(() => {
-    setIsLoading(true);
     if (searchTags.length) {
       const newImgArr = imgData.filter((data) =>
         data.tags.some((tag) => searchTags.includes(tag))
@@ -84,8 +83,6 @@ const MainContent = ({ userLoggedIn }) => {
     } else {
       setAllImages(imgData);
     }
-
-    setTimeout(() => setIsLoading(false), 1000);
   }, [searchTags]);
 
   return (
@@ -108,19 +105,25 @@ const MainContent = ({ userLoggedIn }) => {
 
       <div className='flex flex-wrap gap-3'>{tagElements}</div>
 
-      {isLoading ? (
-        <CircleLoader className='mx-auto' />
-      ) : (
-        <div className='mt-5 grid gap-4 grid-cols-2 grid-flow-dense md:grid-cols-3 lg:grid-cols-4'>
-          {imgElements.length ? (
-            imgElements
-          ) : (
-            <p className='col-span-full text-base text-center'>
-              Sorry, your search did not give any results.
-            </p>
-          )}
-        </div>
-      )}
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+      >
+        <SortableContext items={allImages} strategy={rectSortingStrategy}>
+          <div className='mt-5 grid gap-4 grid-cols-2 grid-flow-dense md:grid-cols-3 lg:grid-cols-4'>
+            {allImages?.length ? (
+              allImages?.map((data) => (
+                <SortableItem key={data.id} item={data} />
+              ))
+            ) : (
+              <p className='text-base text-center'>
+                Sorry, your search did not give any results.
+              </p>
+            )}
+          </div>
+        </SortableContext>
+      </DndContext>
     </main>
   );
 };
