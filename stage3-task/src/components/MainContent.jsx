@@ -70,7 +70,13 @@ const MainContent = ({ userLoggedIn }) => {
       distance: 10,
     },
   });
-  const touchSensor = useSensor(TouchSensor);
+  const touchSensor = useSensor(TouchSensor, {
+    // Press delay of 250ms, with tolerance of 5px of movement
+    activationConstraint: {
+      delay: 150,
+      tolerance: 5,
+    },
+  });
 
   const sensors = useSensors(mouseSensor, touchSensor);
 
