@@ -1,4 +1,4 @@
-import { Close, SearchOutlined } from "@mui/icons-material";
+import { Close, Mouse, SearchOutlined } from "@mui/icons-material";
 import imgData from "../data";
 import { useEffect, useState } from "react";
 import { CircleLoader } from "react-spinners";
@@ -64,7 +64,15 @@ const MainContent = ({ userLoggedIn }) => {
     setSearchTags((prevTags) => [...prevTags, tagName]);
   };
 
-  const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
+  const mouseSensor = useSensor(MouseSensor, {
+    // Require the mouse to move by 10 pixels before activating
+    activationConstraint: {
+      distance: 10,
+    },
+  });
+  const touchSensor = useSensor(TouchSensor);
+
+  const sensors = useSensors(mouseSensor, touchSensor);
 
   const handleDragEnd = (event) => {
     // console.log(event);
