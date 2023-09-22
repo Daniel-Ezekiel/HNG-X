@@ -73,7 +73,7 @@ const MainContent = ({ userLoggedIn }) => {
   const touchSensor = useSensor(TouchSensor, {
     // Press delay of 250ms, with tolerance of 5px of movement
     activationConstraint: {
-      delay: 150,
+      delay: 100,
       tolerance: 5,
     },
   });
