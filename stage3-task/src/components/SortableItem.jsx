@@ -2,9 +2,11 @@ import { useSortable } from "@dnd-kit/sortable";
 import Tag from "./Tag";
 import { CSS } from "@dnd-kit/utilities";
 
-const SortableItem = ({ item }) => {
+const SortableItem = ({ item, updateSearchTags }) => {
   const orientation = item.type;
-  const tagSpans = item.tags.map((tag, i) => <Tag key={i} tagVal={tag} />);
+  const tagSpans = item.tags.map((tag, i) => (
+    <Tag key={i} tagVal={tag} updateSearchTag={updateSearchTags} />
+  ));
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: item.id });
   const style = {

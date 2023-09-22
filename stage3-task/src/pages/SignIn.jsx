@@ -28,7 +28,7 @@ const SignIn = () => {
         // Signed in
         const user = userCredential.user;
         setCurrentUser(user);
-        console.log(userCredential);
+        // console.log(userCredential);
         navigate("/galleria");
       })
       .catch((error) => {
@@ -40,7 +40,7 @@ const SignIn = () => {
     // console.log("Handling update!");
   };
 
-  console.log(currentUser, error);
+  // console.log(currentUser, error);
 
   return (
     <div className='min-h-[100vh] grid place-items-center'>

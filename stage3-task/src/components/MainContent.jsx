@@ -1,7 +1,7 @@
 import { Close, SearchOutlined } from "@mui/icons-material";
-import ImageBox from "./ImageBox";
 import imgData from "../data";
 import { useEffect, useState } from "react";
+import { CircleLoader } from "react-spinners";
 import {
   DndContext,
   MouseSensor,
@@ -21,6 +21,7 @@ const MainContent = ({ userLoggedIn }) => {
   const [allImages, setAllImages] = useState(imgData);
   const [searchVal, setSearchVal] = useState("");
   const [searchTags, setSearchTags] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleSearch = () => {
     const uniqueTags = [...new Set(searchTags), searchVal.trim().toLowerCase()];
@@ -57,16 +58,23 @@ const MainContent = ({ userLoggedIn }) => {
     ) : null
   );
 
+  const addSearchTag = (event) => {
+    const tagName = event.target.textContent.trim();
+    if (searchTags.includes(tagName)) return;
+    setSearchTags((prevTags) => [...prevTags, tagName]);
+  };
+
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
   const handleDragEnd = (event) => {
-    console.log(event);
+    // console.log(event);
     const { active, over } = event;
-    if (active.id === over.id) {
+    if (active.id === over?.id) {
       return;
     }
 
     setAllImages((images) => {
+      console.log(images[0].id);
       const oldIndex = images.findIndex((image) => image.id == active.id);
       const newIndex = images.findIndex((image) => image.id === over.id);
 
@@ -75,6 +83,7 @@ const MainContent = ({ userLoggedIn }) => {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     if (searchTags.length) {
       const newImgArr = imgData.filter((data) =>
         data.tags.some((tag) => searchTags.includes(tag))
@@ -83,6 +92,8 @@ const MainContent = ({ userLoggedIn }) => {
     } else {
       setAllImages(imgData);
     }
+
+    setTimeout(() => setIsLoading(false), 2000);
   }, [searchTags]);
 
   return (
@@ -105,25 +116,33 @@ const MainContent = ({ userLoggedIn }) => {
 
       <div className='flex flex-wrap gap-3'>{tagElements}</div>
 
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragEnd={handleDragEnd}
-      >
-        <SortableContext items={allImages} strategy={rectSortingStrategy}>
-          <div className='mt-5 grid gap-4 grid-cols-2 grid-flow-dense md:grid-cols-3 lg:grid-cols-4'>
-            {allImages?.length ? (
-              allImages?.map((data) => (
-                <SortableItem key={data.id} item={data} />
-              ))
-            ) : (
-              <p className='text-base text-center'>
-                Sorry, your search did not give any results.
-              </p>
-            )}
-          </div>
-        </SortableContext>
-      </DndContext>
+      {isLoading ? (
+        <CircleLoader className='mx-auto text-rose' color='#be123c' />
+      ) : (
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext items={allImages} strategy={rectSortingStrategy}>
+            <div className='mt-5 grid gap-4 grid-cols-2 grid-flow-dense md:grid-cols-3 lg:grid-cols-4'>
+              {allImages?.length ? (
+                allImages?.map((data) => (
+                  <SortableItem
+                    key={data.id}
+                    item={data}
+                    updateSearchTags={addSearchTag}
+                  />
+                ))
+              ) : (
+                <p className='text-base text-center'>
+                  Sorry, your search did not give any results.
+                </p>
+              )}
+            </div>
+          </SortableContext>
+        </DndContext>
+      )}
     </main>
   );
 };
