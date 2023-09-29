@@ -88,7 +88,7 @@ const Ready = () => {
               <option value='English'>English</option>
             </select>
 
-            <div className='h-[23rem] overflow-scroll mt-6 grid gap-2 font-inter font-medium text-[1.4rem]'>
+            <div className='h-[23rem] overflow-y-scroll mt-6 grid gap-2 font-inter font-medium text-[1.4rem]'>
               <div className='flex gap-2'>
                 <span>0.01</span>
                 <p>
