@@ -19,7 +19,7 @@ const Home = () => {
               <h1 className='w-[28rem] font-sora font-bold text-2xl leading-[1.1] capitalize lg:text-3xl lg:w-[35rem] xl:text-4xl xl:w-[48rem]'>
                 Show them don't just tell
               </h1>
-              <p className='font-inter text-gray'>
+              <p className='font-inter font-normal text-gray'>
                 Help your friends and loved ones by creating and sending videos
                 on how to get things done on a website.
               </p>
