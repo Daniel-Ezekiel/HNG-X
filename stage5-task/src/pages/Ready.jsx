@@ -7,8 +7,18 @@ import videoPlaceholder from "../assets/video.png";
 import facebook from "../assets/facebook.png";
 import whatsapp from "../assets/whatsapp.png";
 import telegram from "../assets/telegram.png";
+import sent from "../assets/sent.png";
+import { useState } from "react";
+import { CloseRounded } from "@mui/icons-material";
 
 const Ready = () => {
+  const [showPopup, setShowPopup] = useState(false);
+
+  const togglePopup = (event) => {
+    event.preventDefault();
+    setShowPopup((prevShowPopup) => !prevShowPopup);
+  };
+
   return (
     <div>
       <Header />
@@ -40,7 +50,10 @@ const Ready = () => {
                 type='email'
                 placeholder='enter email of the reciever'
               />
-              <button className='bg-[#605C84] px-3 py-2 rounded-[1.2rem] text-sm text-white'>
+              <button
+                className='bg-[#605C84] px-3 py-2 rounded-[1.2rem] text-sm text-white'
+                onClick={togglePopup}
+              >
                 Send
               </button>
             </div>
@@ -163,6 +176,45 @@ const Ready = () => {
           </div>
         </section>
       </main>
+
+      {showPopup && (
+        <div className='fixed top-[0] left-[0] bg-[rgba(0,0,0,0.32)] w-[100vw] h-[100vh]'></div>
+      )}
+
+      {showPopup && (
+        <div className='fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#F2F4F7] w-[30rem] max-w-[60rem] mx-auto p-5 grid gap-9 text-center rounded-[1.2rem] font-work-sans md:w-[45rem] md:py-10'>
+          <div className='grid place-items-center'>
+            <img src={sent} alt='' />
+            <p className='text-sm md:text-lg'>
+              Your video has been sent to{" "}
+              <span className='font-medium'>johnmark@gmail.com</span>
+            </p>
+          </div>
+
+          <div className='grid gap-2 place-items-center text-sm md:text-base'>
+            <p>
+              Would you need to view this video later? Save to your account now!
+            </p>
+            <button className='bg-blue p-3 rounded-[1.2rem] text-white'>
+              Save video
+            </button>
+
+            <button
+              className='absolute top-4 right-4 border-2 w-6 h-6 rounded-full'
+              onClick={togglePopup}
+            >
+              <CloseRounded />
+            </button>
+          </div>
+
+          <div className='flex justify-center gap-2 text-[1.2rem] md:text-sm'>
+            <p className='text-[#7E7E7E]'>Don't have an account?</p>
+            <Link to='/login' className='underline font-bold text-blue'>
+              Create account
+            </Link>
+          </div>
+        </div>
+      )}
       <Footer />
     </div>
   );
