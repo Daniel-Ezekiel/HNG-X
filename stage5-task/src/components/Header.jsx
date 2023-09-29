@@ -3,7 +3,7 @@ import logo from "../assets/logo.png";
 
 const Header = () => {
   return (
-    <header className='border-b-[0.4rem] border-b-[#f4f6f8] p-4 text-sm'>
+    <header className='border-b-[0.2rem] border-b-[#f4f6f8] p-4 text-sm'>
       <nav className='grid grid-cols-3 items-center md:flex md:justify-between md:max-w-[124rem] md:mx-auto'>
         <span className='col-start-2 flex gap-1 items-center font-inter font-bold text-blue'>
           <img src={logo} alt='logo' />

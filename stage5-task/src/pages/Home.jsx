@@ -14,16 +14,16 @@ const Home = () => {
       <Header />
       <main>
         <section className='p-4 py-[8rem]'>
-          <div className='grid gap-8 md:grid-cols-2 md:gap-4 md:max-w-[124rem] md:mx-auto'>
+          <div className='grid gap-8 md:grid-cols-2 md:gap-4 md:max-w-[124rem] md:mx-auto lg:py-[4rem]'>
             <div className='flex flex-col gap-2 items-start font-work-sans text-lg md:place-self-center'>
-              <h1 className='w-[30rem] font-sora font-bold text-2xl capitalize'>
+              <h1 className='w-[28rem] font-sora font-bold text-2xl leading-[1.1] capitalize lg:text-3xl lg:w-[35rem] xl:text-4xl xl:w-[48rem]'>
                 Show them don't just tell
               </h1>
-              <p className=' text-gray'>
+              <p className='font-inter text-gray'>
                 Help your friends and loved ones by creating and sending videos
                 on how to get things done on a website.
               </p>
-              <button className='bg-blue rounded-[0.8rem] mt-4 p-2 flex gap-2 items-center text-lg text-white'>
+              <button className='bg-blue rounded-[0.8rem] mt-4 p-2 flex gap-2 items-center text-lg text-white lg:p-4'>
                 Install HelpMeOut
                 <ArrowForwardRounded fontSize='large' />
               </button>
@@ -35,8 +35,8 @@ const Home = () => {
           </div>
         </section>
 
-        <section className='border-t-[4rem] border-t-[#f4f6f8] p-4 py-[7rem] '>
-          <div className='grid gap-8 font-work-sans md:grid-cols-2 md:max-w-[124rem] md:mx-auto'>
+        <section className='border-t-[4rem] border-t-[#f4f6f8] p-4 py-[7rem] xl:border-t-[6rem]'>
+          <div className='grid gap-8 font-work-sans md:grid-cols-2 md:max-w-[124rem] md:mx-auto lg:py-[4rem]'>
             <div className='md:col-span-full'>
               <h2 className='font-sora font-bold text-2xl text-center text-dark1'>
                 Features
@@ -46,7 +46,7 @@ const Home = () => {
               </p>
             </div>
 
-            <ul className='flex flex-col gap-7 md:place-self-center'>
+            <ul className='flex flex-col gap-7 md:place-self-center xl:w-[52rem]'>
               <li className='grid grid-cols-[5rem_1fr] gap-x-2'>
                 <img src={simpleIcon} alt='simple' />
                 <div>
@@ -66,8 +66,8 @@ const Home = () => {
                     Easy-to-Share URL
                   </h4>
                   <p className='col-start-2 text-base'>
-                    Effortless screen recording for everyone. Record with ease,
-                    no tech expertise required.
+                    Share your recordings instantly with a single link. No
+                    attachments, no downloads.
                   </p>
                 </div>
               </li>
@@ -78,8 +78,8 @@ const Home = () => {
                     Revisit Recordings
                   </h4>
                   <p className='col-start-2 text-base'>
-                    Effortless screen recording for everyone. Record with ease,
-                    no tech expertise required.
+                    Access and review your past content effortlessly. Your
+                    recordings, always at your fingertips.
                   </p>
                 </div>
               </li>
@@ -91,8 +91,8 @@ const Home = () => {
           </div>
         </section>
 
-        <section className='border-t-[4rem] border-t-[#f4f6f8] p-4 py-[7rem]'>
-          <div className='grid gap-8 font-work-sans md:grid-cols-3 md:max-w-[124rem] md:mx-auto'>
+        <section className='border-t-[4rem] border-t-[#f4f6f8] p-4 py-[7rem] xl:border-t-[6rem]'>
+          <div className='grid gap-8 font-work-sans md:grid-cols-3 md:max-w-[124rem] md:mx-auto lg:py-[4rem]'>
             <h2 className='font-sora font-bold text-2xl text-center text-dark1 md:col-span-full'>
               How it works
             </h2>
