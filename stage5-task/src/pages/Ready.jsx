@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import edit from "../assets/edit.png";
 import copy from "../assets/copy.png";
 import videoPlaceholder from "../assets/video.png";
-import { Link } from "react-router-dom";
+import facebook from "../assets/facebook.png";
+import whatsapp from "../assets/whatsapp.png";
+import telegram from "../assets/telegram.png";
 
 const Ready = () => {
   return (
@@ -67,13 +70,16 @@ const Ready = () => {
               <p className='col-span-full font-sora font-bold text-[1.4rem]'>
                 Share your video
               </p>
-              <button className='border-2 rounded-[1.2rem] p-2 font-inter text-[1.4rem] xl:text-sm'>
+              <button className='border-2 rounded-[1.2rem] p-2 flex justify-center items-center gap-2 font-inter text-[1.4rem] xl:text-sm'>
+                <img src={facebook} alt='' />
                 Facebook
               </button>
-              <button className='border-2 rounded-[1.2rem] p-2 font-inter text-[1.4rem] xl:text-sm'>
+              <button className='border-2 rounded-[1.2rem] p-2 flex justify-center items-center gap-2 font-inter text-[1.4rem] xl:text-sm'>
+                <img src={whatsapp} alt='' />
                 Whatsapp
               </button>
-              <button className='border-2 rounded-[1.2rem] p-2 font-inter text-[1.4rem] xl:text-sm'>
+              <button className='border-2 rounded-[1.2rem] p-2 flex justify-center items-center gap-2 font-inter text-[1.4rem] xl:text-sm'>
+                <img src={telegram} alt='' />
                 Telegram
               </button>
             </div>
