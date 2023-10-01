@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Ready from "./pages/Ready";
 import Dashboard from "./pages/Dashboard";
+import Video from "./pages/Video";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,11 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+    // errorElement: <ErrorPage />,
+  },
+  {
+    path: "/recent-videos/video",
+    element: <Video />,
     // errorElement: <ErrorPage />,
   },
 ]);
