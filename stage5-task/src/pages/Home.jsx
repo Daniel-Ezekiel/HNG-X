@@ -7,6 +7,7 @@ import demoImg from "../assets/demo-img.png";
 import simpleIcon from "../assets/simple-icon.png";
 import shareIcon from "../assets/share-icon.png";
 import revisitIcon from "../assets/revisit-icon.png";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -23,10 +24,15 @@ const Home = () => {
                 Help your friends and loved ones by creating and sending videos
                 on how to get things done on a website.
               </p>
-              <button className='bg-blue rounded-[0.8rem] mt-4 p-2 flex gap-2 items-center text-lg text-white lg:p-4'>
+              <a
+                href='https://drive.google.com/file/d/1DcAeNjAWE_Xi4OlagmWyc73LzliYYqAa/view?usp=sharing'
+                rel='noreferrer'
+                target='_blank'
+                className='bg-blue rounded-[0.8rem] mt-4 p-2 flex gap-2 items-center text-lg text-white lg:p-4'
+              >
                 Install HelpMeOut
                 <ArrowForwardRounded fontSize='large' />
-              </button>
+              </a>
             </div>
 
             <div>
