@@ -3,6 +3,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Ready from "./pages/Ready";
+import Dashboard from "./pages/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,11 @@ const router = createBrowserRouter([
   {
     path: "/ready",
     element: <Ready />,
+    // errorElement: <ErrorPage />,
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
     // errorElement: <ErrorPage />,
   },
 ]);

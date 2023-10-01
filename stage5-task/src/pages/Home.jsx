@@ -1,6 +1,6 @@
 import { ArrowForwardRounded } from "@mui/icons-material";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Header from "../components/main/Header";
+import Footer from "../components/main/Footer";
 import heroImg from "../assets/hero-img.png";
 import featureImg from "../assets/feature-img.png";
 import demoImg from "../assets/demo-img.png";
