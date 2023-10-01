@@ -43,7 +43,7 @@ const Dashboard = () => {
                   <SearchRounded fontSize='large' />
                 </button>
                 <input
-                  className='w-full p-3 pl-9 bg-[rgba(182,179,198,0.14);] border-[0.1rem] border-[#e7e7ed] rounded-[1.2rem] text-[1.4rem] placeholder:text-[#c3c3c3]'
+                  className='w-full h-full p-3 pl-9 bg-[rgba(182,179,198,0.14);] border-[0.1rem] border-[#e7e7ed] rounded-[1.2rem] text-[1.4rem] placeholder:text-[#c3c3c3]'
                   type='text'
                   placeholder='Search for a particular video'
                 />
