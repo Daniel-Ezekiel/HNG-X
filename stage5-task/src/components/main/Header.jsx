@@ -22,12 +22,12 @@ const Header = () => {
           </li>
         </ul>
 
-        <a
-          href=''
+        <Link
+          to='/login'
           className='font-sora font-semibold text-[1.4rem] text-end text-blue sm:text-base'
         >
           Get started
-        </a>
+        </Link>
 
         <button className='col-start-1 row-start-1 justify-self-start md:hidden'>
           <Menu fontSize='large' />
